@@ -23,6 +23,10 @@ describe("<Button>", () => {
                 "background-color": "rgb(0, 91, 150)"
             });
     });
-    it("renders its icon");
+    it("renders its icon", function() {
+        cy.mount(<Button icon="calendar">Calendar</Button>);
+        cy.get("button").css()
+            .its("background-image").should("match", /calendar/);
+    });
     it("emits a click event");
 });

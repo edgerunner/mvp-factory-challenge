@@ -5,7 +5,10 @@ export default function Menu({ title, children, onSelect }) {
     const [open, setOpen] = useState(false);
     const childrenWithHandlers = Children.map(children, child => 
         cloneElement(child, {
-            onClick() { onSelect?.(child.props.id); }
+            onSelect() { 
+                child.props.onSelect?.(); 
+                onSelect?.(child.props.id);
+            }
         })
     );
     return (
@@ -16,8 +19,8 @@ export default function Menu({ title, children, onSelect }) {
     );
 }
 
-export function Item({ children, onClick }) {
-    return <li onClick={onClick}>{children}</li>;
+export function Item({ children, onSelect }) {
+    return <li onClick={onSelect}>{children}</li>;
 }
 
 Menu.Item = Item;

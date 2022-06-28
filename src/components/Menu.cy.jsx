@@ -59,6 +59,19 @@ describe("<Menu>", function() {
                 .contains("Item 1")
                 .find("b").contains("1");
         });
-        it("emits onSelect event when clicked");
+        it("emits onSelect event when clicked", function() {
+            const onSelect1 = cy.stub().as("onSelect1");
+            const onSelect2 = cy.stub().as("onSelect2");
+            cy.mount(
+                <Menu title="Select">
+                    <Menu.Item onSelect={onSelect1}>Item 1</Menu.Item>
+                    <Menu.Item onSelect={onSelect2}>Item 2</Menu.Item>
+                </Menu>
+            );
+            cy.get("button").click();
+            cy.get("button menu li").first().click();
+            cy.get("@onSelect1").should("have.been.calledOnce");
+            cy.get("@onSelect2").should("not.have.been.called");
+        });
     });
 });

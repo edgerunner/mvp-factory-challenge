@@ -21,7 +21,19 @@ describe("<Menu>", function() {
         cy.get("button").click();
         cy.get("menu li").should("have.length", 2);
     });
-    it("emits onSelect event with the item ID when an item is clicked");
+    it("emits onSelect event with the item ID when an item is clicked", function() {
+        const onSelect = cy.stub().as("onSelect");
+        cy.mount(
+            <Menu title="Open" onSelect={onSelect}>
+                <Menu.Item id="item-1">Item 1</Menu.Item>
+                <Menu.Item id="item-2">Item 2</Menu.Item>
+            </Menu>
+        );
+        cy.get("button").click();
+        cy.get("menu li").first().click();
+        cy.get("@onSelect").should("have.been.calledOnce");
+        cy.get("@onSelect").should("have.been.calledWith", "item-1");
+    });
     it("closes when selected");
     describe("<Item>", function() {
         it("renders its contents");

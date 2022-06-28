@@ -34,7 +34,18 @@ describe("<Menu>", function() {
         cy.get("@onSelect").should("have.been.calledOnce");
         cy.get("@onSelect").should("have.been.calledWith", "item-1");
     });
-    it("closes when selected");
+    it("closes when selected", function() {
+        cy.mount(
+            <Menu title="Select">
+                <Menu.Item>Item 1</Menu.Item>
+                <Menu.Item>Item 2</Menu.Item>
+            </Menu>
+        );
+        cy.get("button").click();
+        cy.get("menu li").first().click();
+        cy.get("button").should("exist");
+        cy.get("menu li").should("not.exist");
+    });
     describe("<Item>", function() {
         it("renders its contents");
         it("emits onSelect event when clicked");

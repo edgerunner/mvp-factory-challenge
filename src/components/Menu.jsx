@@ -5,7 +5,7 @@ export default function Menu({ title, children, onSelect }) {
     const [open, setOpen] = useState(false);
     const childrenWithHandlers = Children.map(children, child => 
         cloneElement(child, {
-            onClick() { onSelect(child.props.id); }
+            onClick() { onSelect?.(child.props.id); }
         })
     );
     return (

@@ -8,5 +8,8 @@ describe("<Currency>", function() {
         cy.mount(<Currency amount={123.45} code="EUR"/>);
         cy.get("data").contains("123 EUR");
     });
-    it("renders currency code");
+    it("rounds to the nearest integer", function() {
+        cy.mount(<Currency amount={123.57} code="SEK"/>);
+        cy.get("data").contains("124 SEK");
+    });
 });

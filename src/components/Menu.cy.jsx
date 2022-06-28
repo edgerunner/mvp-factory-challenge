@@ -4,14 +4,23 @@ describe("<Menu>", function() {
     it("shows only the button when not open", function() {
         cy.mount(
             <Menu title="Closed">
-            <Menu.Item>Item 1</Menu.Item>
-            <Menu.Item>Item 2</Menu.Item>
+                <Menu.Item>Item 1</Menu.Item>
+                <Menu.Item>Item 2</Menu.Item>
             </Menu>
         );
         cy.get("button").contains("Closed");
         cy.get("li").should("not.exist");
     });
-    it("shows the <Menu.Item>s when open");
+    it("shows the <Menu.Item>s when open", function() {
+        cy.mount(
+            <Menu title="Open">
+                <Menu.Item>Item 1</Menu.Item>
+                <Menu.Item>Item 2</Menu.Item>
+            </Menu>
+        );
+        cy.get("button").click();
+        cy.get("menu li").should("have.length", 2);
+    });
     it("emits onSelect event with the item ID when an item is clicked");
     it("closes when selected");
     describe("<Item>", function() {

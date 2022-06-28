@@ -28,5 +28,10 @@ describe("<Button>", () => {
         cy.get("button").css()
             .its("background-image").should("match", /calendar/);
     });
-    it("emits a click event");
+    it("emits a click event", function() {
+        const clickHandler = cy.stub().as("click-handler");
+        cy.mount(<Button onClick={clickHandler}>Click me</Button>);
+        cy.get("button").click();
+        cy.get("@click-handler").should("have.been.calledOnce");
+    });
 });

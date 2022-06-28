@@ -34,4 +34,10 @@ describe("<Button>", () => {
         cy.get("button").click();
         cy.get("@click-handler").should("have.been.calledOnce");
     });
+    it("passes down other attributes", function() {
+        cy.mount(<Button id="my-button" className="interesting">Hello</Button>);
+        cy.get("button")
+            .should("have.attr", "id", "my-button")
+            .should("have.attr", "class", "interesting");
+    });
 });

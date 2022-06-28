@@ -25,3 +25,6 @@ rules:
   semi:
     - error
     - always
+settings:
+  react:
+    version: detect

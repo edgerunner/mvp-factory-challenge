@@ -40,4 +40,10 @@ describe("<Button>", () => {
             .should("have.attr", "id", "my-button")
             .should("have.attr", "class", "interesting");
     });
+    it("merges classnames", function() {
+        cy.mount(<Button action className="interesting">Hello</Button>);
+        cy.get("button")
+            .should("have.class", "action")
+            .should("have.class", "interesting");
+    });
 });

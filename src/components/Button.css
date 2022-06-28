@@ -7,3 +7,7 @@ button {
     font-size: 14px;
     padding: 8px 10px;
 }
+
+button.action {
+    background: #005B96;
+}

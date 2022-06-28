@@ -14,6 +14,15 @@ describe("<Button>", () => {
                 "color": "rgb(255, 255, 255)"
             });
     });
+    it("picks its action mode colors", function() {
+        cy.mount(<Button action>Action</Button>);
+        cy.get("button")
+            .should("have.class", "action")
+            .css()
+            .should("include", { 
+                "background-color": "rgb(0, 91, 150)"
+            });
+    });
     it("renders its icon");
     it("emits a click event");
 });

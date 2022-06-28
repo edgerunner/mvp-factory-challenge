@@ -47,7 +47,18 @@ describe("<Menu>", function() {
         cy.get("menu li").should("not.exist");
     });
     describe("<Item>", function() {
-        it("renders its contents");
+        it("renders its contents", function() {
+            cy.mount(
+                <Menu title="Select">
+                    <Menu.Item>Item <b>1</b></Menu.Item>
+                    <Menu.Item>Item <i>2</i></Menu.Item>
+                </Menu>
+            );
+            cy.get("button").click();
+            cy.get("button menu li").first()
+                .contains("Item 1")
+                .find("b").contains("1");
+        });
         it("emits onSelect event when clicked");
     });
 });

@@ -46,6 +46,26 @@ describe("<Menu>", function() {
         cy.get("button").should("exist");
         cy.get("menu li").should("not.exist");
     });
+    it("keeps its size when opened", function() {
+        cy.mount(
+            <Menu title="Select">
+                <Menu.Item>Item 1</Menu.Item>
+                <Menu.Item>Item 2</Menu.Item>
+            </Menu>
+        );
+        cy.get("button.Menu").then(([closedMenu]) => {
+            const { width, height } = closedMenu.getBoundingClientRect();
+            cy.get("button.Menu").click().then(([openMenu]) => {
+                const { width: openWidth, height: openHeight } = openMenu.getBoundingClientRect();
+                expect(openWidth).to.equal(width);
+                expect(openHeight).to.equal(height);
+            });
+        });
+
+
+
+
+    });
     describe("<Item>", function() {
         it("renders its contents", function() {
             cy.mount(

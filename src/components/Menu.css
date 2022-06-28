@@ -1,0 +1,26 @@
+button.Menu {
+    position: relative;
+}
+
+button.Menu menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 100;
+    background-color: inherit;
+    margin-top: 2px;
+    list-style: none;
+    padding: inherit;
+    border-radius: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+button.Menu menu li {
+    cursor: pointer;
+}
+
+button.Menu menu li:hover {
+    text-decoration: underline;
+}

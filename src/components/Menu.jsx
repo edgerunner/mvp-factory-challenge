@@ -1,5 +1,7 @@
 import Button from "./Button";
 import { useState, Children, cloneElement } from "react";
+import cn from "classnames";
+import "./Menu.css";
 
 export default function Menu({ title, children, onSelect }) {
     const [open, setOpen] = useState(false);
@@ -12,7 +14,11 @@ export default function Menu({ title, children, onSelect }) {
         })
     );
     return (
-        <Button icon="down-arrow" onClick={() => setOpen(!open)}>
+        <Button 
+            icon="down-arrow" 
+            className={cn({ Menu: true, open })} 
+            onClick={() => setOpen(!open)}
+        >
             {title}
             {open && (<menu>{childrenWithHandlers}</menu>)}
         </Button>

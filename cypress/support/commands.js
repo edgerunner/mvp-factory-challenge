@@ -23,3 +23,8 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add("css", { prevSubject: "element" }, (subject) => {
+    Cypress.log({ name: "css" });
+    return  window.getComputedStyle(subject[0]);
+});

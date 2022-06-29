@@ -5,9 +5,7 @@ export default function Table({ children: columns, data }) {
 
     return (
         <table>
-            <thead>
-                <HeadRow schema={schema} />
-            </thead>
+            <thead>{columns}</thead>
             <tbody>
                 {data.map((row, index) => <Row schema={schema} data={row} key={row.key || row.id || index} />)}
             </tbody>
@@ -15,7 +13,11 @@ export default function Table({ children: columns, data }) {
     );
 }
 
-export function Column() { return null; }
+export function Column({ header, id }) { 
+    return (
+        <th scope="col" id={id}>{header}</th>
+    ); 
+}
 
 function Row({ schema, data }) {
     return (
@@ -26,14 +28,6 @@ function Row({ schema, data }) {
     );
 }
 
-function HeadRow({ schema }) {
-    return (
-        <tr>
-            {schema.map(({ header, id }, index) => 
-                <th scope="col" key={id || index}>{header}</th>)}
-        </tr>
-    );
-}
 
 function makeSchema(columns) {
     return Children.map(columns, 

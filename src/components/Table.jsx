@@ -5,6 +5,9 @@ export default function Table({ children: columns, data }) {
 
     return (
         <table>
+            <thead>
+                <HeadRow schema={schema} />
+            </thead>
             <tbody>
                 {data.map((row, index) => <Row schema={schema} data={row} key={row.key || row.id || index} />)}
             </tbody>
@@ -23,8 +26,17 @@ function Row({ schema, data }) {
     );
 }
 
+function HeadRow({ schema }) {
+    return (
+        <tr>
+            {schema.map(({ header, id }, index) => 
+                <th scope="col" key={id || index}>{header}</th>)}
+        </tr>
+    );
+}
+
 function makeSchema(columns) {
     return Children.map(columns, 
-        ({ props: { children: render, id } }) => ({ render, id })
+        ({ props: { children: render, id, header } }) => ({ render, id, header })
     );
 }

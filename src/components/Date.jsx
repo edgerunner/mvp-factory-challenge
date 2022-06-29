@@ -5,5 +5,5 @@ const { format } = new Intl.DateTimeFormat("en-US", {
 });
 
 export default function Date({ date }) {
-    return <time>{format(date)}</time>;
+    return <time dateTime={date.toISOString()}>{format(date)}</time>;
 }

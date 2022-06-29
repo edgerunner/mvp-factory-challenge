@@ -29,5 +29,14 @@ describe("<Table>", function() {
         cy.get("table th:nth-child(2)").contains("Name");
         cy.get("table th:nth-child(3)").contains("Age");
     });
-    it("renders a given caption");
+    it("renders a given caption", function() {
+        cy.mount(
+            <Table data={sample} caption="Sample Table">
+                <Column>{row => row.id}</Column>
+                <Column>{row => row.name}</Column>
+                <Column>{row => row.age}</Column>
+            </Table>
+        );
+        cy.get("caption").contains("Sample Table");
+    });
 });

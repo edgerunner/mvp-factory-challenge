@@ -27,6 +27,17 @@ describe("<DataSection>", function() {
         cy.get("article table tr:nth-child(1) td:nth-child(2)").contains("John");
         cy.get("article table tr:nth-child(3) td:nth-child(3)").contains("22");
     });
-    it("generates <DataBlock> headers with a render prop");
+    it("generates <DataBlock> headers with a render prop", function() {
+        const headerRenderProp = data =>
+            data[0].age > 40 ? <h3>Senior</h3> : <h3>Junior</h3>;
+        cy.mount(
+            <DataSection data={sample} blockHeader={headerRenderProp}>
+                <Column header="ID">{row => row.id}</Column>
+                <Column header="Name">{row => row.name}</Column>
+                <Column header="Age">{row => row.age}</Column>
+            </DataSection>
+        );
+        cy.get("section article:first-child header").contains("Junior");
+    });
     it("renders a header block");
 });

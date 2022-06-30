@@ -5,3 +5,8 @@ section {
     background-color: #F1FAFE;
     border-radius: 10px;
 }
+
+section > header {
+    margin: 16px;
+    margin-bottom: 0;
+}

@@ -1,8 +1,9 @@
 import DataBlock from "./DataBlock";
 
-export default function DataSection({ children: columns, data, blockHeader }) {
+export default function DataSection({ children: columns, data, header, blockHeader }) {
     return (
         <section>
+            {header && <header>{header}</header>}
             {data.map((block, index) => 
                 <DataBlock 
                     open

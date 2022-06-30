@@ -40,5 +40,14 @@ describe("<DataSection>", function() {
         );
         cy.get("section article:first-child header").contains("Junior");
     });
-    it("renders a header block");
+    it("renders a header block", function() {
+        cy.mount(
+            <DataSection data={sample} header={<b>Sample data</b>}>
+                <Column header="ID">{row => row.id}</Column>
+                <Column header="Name">{row => row.name}</Column>
+                <Column header="Age">{row => row.age}</Column>
+            </DataSection>
+        );
+        cy.get("section > header b").contains("Sample data");
+    });
 });

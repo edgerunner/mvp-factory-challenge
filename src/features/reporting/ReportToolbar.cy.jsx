@@ -32,5 +32,10 @@ describe("<ReportToolbar>", function() {
     it("renders a generate report action button", function() {
         cy.get("button").contains("Generate report").should("have.class", "action");
     });
-    it("emits an onSubmit event when the generate report button is clicked");
+    describe("emits an onSubmit event when the generate report button is clicked", function () {
+        it("without parameters for the 'All …' values");
+        it("with parameters for the project and gateway values");
+        it("with a single project parameter");
+        it("with a single gateway parameter");
+    });
 });

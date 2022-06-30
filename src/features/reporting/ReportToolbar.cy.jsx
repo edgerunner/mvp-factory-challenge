@@ -24,7 +24,10 @@ describe("<ReportToolbar>", function() {
         cy.contains("Gateway 1");
         cy.contains("Gateway 2");
     });
-    it("renders a from-to date selectors");
+    it("renders from-to date selectors", function() {
+        cy.get("button").contains("From date")
+            .next().contains("To date");
+    });
     it("renders a generate report button");
     it("emits an onSubmit event when the generate report button is clicked");
 });

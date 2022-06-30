@@ -1,4 +1,4 @@
-import { Menu } from "/src/components";
+import { Button, Menu } from "/src/components";
 export default function ReportToolbar({ projects, gateways }) {
     return (
         <nav id="report-toolbar">
@@ -14,6 +14,8 @@ export default function ReportToolbar({ projects, gateways }) {
                     <Menu.Item key={gateway.id}>{gateway.name}</Menu.Item>)
                 }
             </Menu>
+            <Button icon="calendar">From date</Button>
+            <Button icon="calendar">To date</Button>
         </nav>
     );
 }

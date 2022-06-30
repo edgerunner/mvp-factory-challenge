@@ -1,5 +1,5 @@
 import { Button, Menu } from "/src/components";
-export default function ReportToolbar({ projects, gateways }) {
+export default function ReportToolbar({ projects, gateways, onSubmit }) {
     return (
         <nav id="report-toolbar">
             <Menu title="All projects">
@@ -16,7 +16,7 @@ export default function ReportToolbar({ projects, gateways }) {
             </Menu>
             <Button icon="calendar">From date</Button>
             <Button icon="calendar">To date</Button>
-            <Button action>Generate report</Button>
+            <Button action onClick={() => onSubmit({})}>Generate report</Button>
         </nav>
     );
 }

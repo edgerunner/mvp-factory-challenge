@@ -12,8 +12,14 @@ const gateways = [
 
 describe("<ReportToolbar>", function() {
     beforeEach(function () {
+        const onSubmit = cy.stub().as("onSubmit");
         cy.viewport(800, 400);
-        cy.mount(<ReportToolbar projects={projects} gateways={gateways} />);
+        cy.mount(
+            <ReportToolbar 
+                projects={projects}
+                gateways={gateways}
+                onSubmit={onSubmit} />
+        );
     });
     it("renders a project selector", function() {
         cy.get("button").contains("All projects").click();
@@ -33,7 +39,10 @@ describe("<ReportToolbar>", function() {
         cy.get("button").contains("Generate report").should("have.class", "action");
     });
     describe("emits an onSubmit event when the generate report button is clicked", function () {
-        it("without parameters for the 'All …' values");
+        it("without parameters for the 'All …' values", function() {
+            cy.get("button").contains("Generate report").click();
+            cy.get("@onSubmit").should("be.calledWith", {});
+        });
         it("with parameters for the project and gateway values");
         it("with a single project parameter");
         it("with a single gateway parameter");

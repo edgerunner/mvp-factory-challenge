@@ -50,4 +50,8 @@ describe("<DataSection>", function() {
         );
         cy.get("section > header b").contains("Sample data");
     });
+    describe("accordion behavior", function() {
+        it("initially shows the first block");
+        it("toggles sections on click");
+    });
 });

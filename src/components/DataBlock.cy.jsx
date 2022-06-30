@@ -19,6 +19,16 @@ describe("<DataBlock>", function() {
         cy.get("article table tr:nth-child(1) td:nth-child(2)").contains("John");
         cy.get("article table tr:nth-child(3) td:nth-child(3)").contains("22");
     });
+    it("renders a header block", function() {
+        cy.mount(
+            <DataBlock data={sample} header={<h3>Sample data</h3>}>
+                <Column header="ID">{row => row.id}</Column>
+                <Column header="Name">{row => row.name}</Column>
+                <Column header="Age">{row => row.age}</Column>
+            </DataBlock>
+        );
+        cy.get("article header h3").contains("Sample data");
+
+    });
     it("renders the <Table> when open");
-    it("renders a header");
 });

@@ -16,6 +16,7 @@ export default function ReportToolbar({ projects, gateways }) {
             </Menu>
             <Button icon="calendar">From date</Button>
             <Button icon="calendar">To date</Button>
+            <Button action>Generate report</Button>
         </nav>
     );
 }

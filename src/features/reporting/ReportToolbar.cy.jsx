@@ -29,6 +29,8 @@ describe("<ReportToolbar>", function() {
         cy.get("button").contains("From date")
             .next().contains("To date");
     });
-    it("renders a generate report button");
+    it("renders a generate report action button", function() {
+        cy.get("button").contains("Generate report").should("have.class", "action");
+    });
     it("emits an onSubmit event when the generate report button is clicked");
 });

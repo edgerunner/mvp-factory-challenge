@@ -1,4 +1,5 @@
 import { Children, useMemo } from "react";
+import "./Table.css";
 
 export default function Table({ children: columns, data, caption }) {
     const schema = useMemo(() => makeSchema(columns), [columns]);

@@ -1,0 +1,22 @@
+table {
+    width: 100%;
+    background: #F1FAFE;
+    border-spacing: 0;
+}
+
+th {
+    font: inherit;
+    text-align: inherit;
+}
+
+thead {
+    background: white;
+}
+
+th, td {
+    padding: 2px 8px;
+}
+
+tbody tr:nth-child(2n) {
+    background: #FFF;
+}

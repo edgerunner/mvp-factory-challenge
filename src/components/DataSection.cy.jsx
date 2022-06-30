@@ -1,5 +1,6 @@
 import DataSection from "./DataSection";
 import { Column } from "./Table";
+import "./DataSection.css";
 
 const young = [
     { id: 1, name: "John", age: 20 },

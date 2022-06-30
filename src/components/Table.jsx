@@ -6,7 +6,7 @@ export default function Table({ children: columns, data, caption }) {
     return (
         <table>
             <caption>{caption}</caption>
-            <thead>{columns}</thead>
+            <thead><tr>{columns}</tr></thead>
             <tbody>
                 {data.map((row, index) => <Row schema={schema} data={row} key={row.key || row.id || index} />)}
             </tbody>

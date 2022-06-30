@@ -10,7 +10,7 @@ const sample = [
 describe("<DataBlock>", function() {
     it("wraps and passes its <Column>s to a <Table>", function() {
         cy.mount(
-            <DataBlock data={sample}>
+            <DataBlock open data={sample}>
                 <Column header="ID">{row => row.id}</Column>
                 <Column header="Name">{row => row.name}</Column>
                 <Column header="Age">{row => row.age}</Column>
@@ -21,7 +21,7 @@ describe("<DataBlock>", function() {
     });
     it("renders a header block", function() {
         cy.mount(
-            <DataBlock data={sample} header={<h3>Sample data</h3>}>
+            <DataBlock open data={sample} header={<h3>Sample data</h3>}>
                 <Column header="ID">{row => row.id}</Column>
                 <Column header="Name">{row => row.name}</Column>
                 <Column header="Age">{row => row.age}</Column>
@@ -30,5 +30,15 @@ describe("<DataBlock>", function() {
         cy.get("article header h3").contains("Sample data");
 
     });
-    it("renders the <Table> when open");
+    it("does not render the <Table> when not open", function() {
+        cy.mount(
+            <DataBlock data={sample} header={<h3>Sample data</h3>}>
+                <Column header="ID">{row => row.id}</Column>
+                <Column header="Name">{row => row.name}</Column>
+                <Column header="Age">{row => row.age}</Column>
+            </DataBlock>
+        );
+        cy.get("article table").should("not.exist");
+        cy.get("article header h3").contains("Sample data");
+    });
 });

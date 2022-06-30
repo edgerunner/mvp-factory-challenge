@@ -1,12 +1,11 @@
 import { Children, useMemo } from "react";
 import "./Table.css";
 
-export default function Table({ children: columns, data, caption }) {
+export default function Table({ children: columns, data }) {
     const schema = useMemo(() => makeSchema(columns), [columns]);
 
     return (
         <table>
-            <caption>{caption}</caption>
             <thead><tr>{columns}</tr></thead>
             <tbody>
                 {data.map((row, index) => <Row schema={schema} data={row} key={row.key || row.id || index} />)}

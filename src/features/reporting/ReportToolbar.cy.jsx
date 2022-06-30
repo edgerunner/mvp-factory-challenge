@@ -12,6 +12,7 @@ const gateways = [
 
 describe("<ReportToolbar>", function() {
     beforeEach(function () {
+        cy.viewport(800, 400);
         cy.mount(<ReportToolbar projects={projects} gateways={gateways} />);
     });
     it("renders a project selector", function() {

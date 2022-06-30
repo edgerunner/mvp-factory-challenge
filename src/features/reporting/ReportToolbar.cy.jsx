@@ -19,7 +19,11 @@ describe("<ReportToolbar>", function() {
         cy.contains("Project 1");
         cy.contains("Project 2");
     });
-    it("renders a gateway selector");
+    it("renders a gateway selector", function() {
+        cy.get("button").contains("All gateways").click();
+        cy.contains("Gateway 1");
+        cy.contains("Gateway 2");
+    });
     it("renders a from-to date selectors");
     it("renders a generate report button");
     it("emits an onSubmit event when the generate report button is clicked");

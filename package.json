@@ -6,8 +6,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "cypress:e2e": "cypress open",
-    "cypress:e2e:cli": "cypress run",
+    "cypress:e2e": "concurrently yarn:dev \"yarn cypress open\"",
+    "cypress:e2e:cli": "concurrently yarn:dev \"yarn cypress run\"",
     "cypress:ct": "cypress open --component",
     "cypress:ct:cli": "cypress run --component"
   },
@@ -20,6 +20,7 @@
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@vitejs/plugin-react": "^1.3.0",
+    "concurrently": "^7.2.2",
     "cypress": "^10.2.0",
     "eslint": "^8.18.0",
     "eslint-plugin-cypress": "^2.12.1",

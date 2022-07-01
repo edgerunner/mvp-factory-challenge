@@ -10,10 +10,12 @@ const gateways = [
     { id: "g2", name: "Gateway 2" },
 ];
 
-describe("<ReportToolbar>", function() {
+describe("<ReportToolbar>", {
+    viewportWidth: 800,
+    viewportHeight: 400,
+}, function() {
     beforeEach(function () {
         const onSubmit = cy.stub().as("onSubmit");
-        cy.viewport(800, 400);
         cy.mount(
             <ReportToolbar 
                 projects={projects}

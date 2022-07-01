@@ -1,3 +1,8 @@
 export default function Currency({ amount, code }) {
-    return <data value={amount}>{Math.round(amount)} {code}</data>;
+    const { format } = new Intl.NumberFormat("en-US", {
+        style: "decimal",
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+    });
+    return <data value={amount}>{format(amount)} {code}</data>;
 }

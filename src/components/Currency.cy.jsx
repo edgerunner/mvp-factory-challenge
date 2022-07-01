@@ -12,4 +12,9 @@ describe("<Currency>", function() {
         cy.mount(<Currency amount={123.57} code="SEK"/>);
         cy.get("data").contains("124 SEK");
     });
+
+    it("shows thousands separators", function() {
+        cy.mount(<Currency amount={1234567} code="USD"/>);
+        cy.get("data").contains("1,234,567 USD");
+    });
 });

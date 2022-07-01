@@ -1,0 +1,19 @@
+header#reports-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+header#reports-header h1, h5 {
+    margin: 0;
+    font-weight: 700;
+}
+
+header#reports-header h1 {
+    font-size: 24px;
+}
+
+header#reports-header h5 {
+    font-size: 16px;
+    color: #7E8299;
+}

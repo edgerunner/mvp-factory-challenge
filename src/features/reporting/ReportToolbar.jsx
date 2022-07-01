@@ -1,15 +1,15 @@
 import { Button, Menu } from "/src/components";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 export default function ReportToolbar({ projects, gateways, onSubmit }) {
     const [project, setProject] = useState(null);
     const [gateway, setGateway] = useState(null);
 
-    const submit = () => {
+    const submit = useCallback(() => {
         const parameters = {};
         if (project) parameters.project = project;
         if (gateway) parameters.gateway = gateway;
         onSubmit(parameters);
-    };
+    }, [project, gateway, onSubmit]);
 
     return (
         <nav id="report-toolbar">

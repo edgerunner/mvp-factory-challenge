@@ -43,7 +43,17 @@ describe("<ReportToolbar>", function() {
             cy.get("button").contains("Generate report").click();
             cy.get("@onSubmit").should("be.calledWith", {});
         });
-        it("with parameters for the project and gateway values");
+        it("with parameters for the project and gateway values", function() {
+            cy.get("button").contains("All projects").click();
+            cy.get("menu li").contains("Project 1").click();
+            cy.get("button").contains("All gateways").click();
+            cy.get("menu li").contains("Gateway 2").click();
+            cy.get("button").contains("Generate report").click();
+            cy.get("@onSubmit").should("be.calledWith", {
+                project: "p1",
+                gateway: "g2"
+            });
+        });
         it("with a single project parameter");
         it("with a single gateway parameter");
     });

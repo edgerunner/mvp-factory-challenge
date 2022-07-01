@@ -1,22 +1,39 @@
 import { Button, Menu } from "/src/components";
+import { useState } from "react";
 export default function ReportToolbar({ projects, gateways, onSubmit }) {
+    const [project, setProject] = useState(null);
+    const [gateway, setGateway] = useState(null);
+
+    const submit = () => {
+        const parameters = {};
+        if (project) parameters.project = project;
+        if (gateway) parameters.gateway = gateway;
+        onSubmit(parameters);
+    };
+
     return (
         <nav id="report-toolbar">
-            <Menu title="All projects">
-                <Menu.Item>All projects</Menu.Item>
+            <Menu onSelect={p => setProject(p)} title="All projects">
+                <Menu.Item id={null}>All projects</Menu.Item>
                 { projects.map(project => 
-                    <Menu.Item key={project.id}>{project.name}</Menu.Item>)
+                    <Menu.Item key={project.id} id={project.id}>
+                        {project.name}
+                    </Menu.Item>)
                 }
             </Menu>
-            <Menu title="All gateways">
-                <Menu.Item>All gateways</Menu.Item>
+            <Menu onSelect={g => setGateway(g)} title="All gateways">
+                <Menu.Item id={null}>All gateways</Menu.Item>
                 { gateways.map(gateway =>
-                    <Menu.Item key={gateway.id}>{gateway.name}</Menu.Item>)
+                    <Menu.Item key={gateway.id} id={gateway.id}>
+                        {gateway.name}
+                    </Menu.Item>)
                 }
             </Menu>
             <Button icon="calendar">From date</Button>
             <Button icon="calendar">To date</Button>
-            <Button action onClick={() => onSubmit({})}>Generate report</Button>
+            <Button action onClick={submit}>
+                Generate report
+            </Button>
         </nav>
     );
 }

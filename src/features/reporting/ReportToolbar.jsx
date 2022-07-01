@@ -1,30 +1,32 @@
 import { Button, Menu } from "/src/components";
 import { useState, useCallback } from "react";
+
+const allProjects = { id: null, name: "All projects" };
+const allGateways = { id: null, name: "All gateways" };
+
 export default function ReportToolbar({ projects, gateways, onSubmit }) {
-    const [project, setProject] = useState(null);
-    const [gateway, setGateway] = useState(null);
+    const [project, setProject] = useState(allProjects);
+    const [gateway, setGateway] = useState(allGateways);
 
     const submit = useCallback(() => {
         const parameters = {};
-        if (project) parameters.project = project;
-        if (gateway) parameters.gateway = gateway;
+        if (project.id) parameters.project = project.id;
+        if (gateway.id) parameters.gateway = gateway.id;
         onSubmit(parameters);
     }, [project, gateway, onSubmit]);
 
     return (
         <nav id="report-toolbar">
-            <Menu onSelect={p => setProject(p)} title="All projects">
-                <Menu.Item id={null}>All projects</Menu.Item>
+            <Menu onSelect={p => setProject(p)} title={project.name}>
                 { projects.map(project => 
-                    <Menu.Item key={project.id} id={project.id}>
+                    <Menu.Item key={project.id} id={project}>
                         {project.name}
                     </Menu.Item>)
                 }
             </Menu>
-            <Menu onSelect={g => setGateway(g)} title="All gateways">
-                <Menu.Item id={null}>All gateways</Menu.Item>
+            <Menu onSelect={g => setGateway(g)} title={gateway.name}>
                 { gateways.map(gateway =>
-                    <Menu.Item key={gateway.id} id={gateway.id}>
+                    <Menu.Item key={gateway.id} id={gateway}>
                         {gateway.name}
                     </Menu.Item>)
                 }

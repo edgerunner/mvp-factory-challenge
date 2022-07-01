@@ -1,5 +1,6 @@
 import { Button, Menu } from "/src/components";
 import { useState, useCallback } from "react";
+import "./ReportToolbar.css";
 
 const allProjects = { id: null, name: "All projects" };
 const allGateways = { id: null, name: "All gateways" };

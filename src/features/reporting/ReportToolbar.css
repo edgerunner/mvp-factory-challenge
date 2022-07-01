@@ -1,0 +1,7 @@
+nav#report-toolbar {
+    display: flex;
+    align-content: center;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 16px;
+}

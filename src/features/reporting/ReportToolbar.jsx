@@ -19,14 +19,14 @@ export default function ReportToolbar({ projects, gateways, onSubmit }) {
     return (
         <nav id="report-toolbar">
             <Menu onSelect={p => setProject(p)} title={project.name}>
-                { projects.map(project => 
+                { [allProjects, ...projects].map(project => 
                     <Menu.Item key={project.id} id={project}>
                         {project.name}
                     </Menu.Item>)
                 }
             </Menu>
             <Menu onSelect={g => setGateway(g)} title={gateway.name}>
-                { gateways.map(gateway =>
+                { [allGateways, ...gateways].map(gateway =>
                     <Menu.Item key={gateway.id} id={gateway}>
                         {gateway.name}
                     </Menu.Item>)

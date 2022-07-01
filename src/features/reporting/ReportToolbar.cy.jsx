@@ -25,13 +25,17 @@ describe("<ReportToolbar>", function() {
         cy.get("button").contains("All projects").click();
         cy.get("menu li").contains("Project 1");
         cy.get("menu li").contains("Project 2").click();
-        cy.get("button").contains("Project 2");
+        cy.get("button").contains("Project 2").click();
+        cy.get("menu li").contains("All projects").click();
+        cy.get("button").contains("All projects");
     });
     it("renders a gateway selector", function() {
         cy.get("button").contains("All gateways").click();
         cy.get("menu li").contains("Gateway 2");
         cy.get("menu li").contains("Gateway 1").click();
-        cy.get("button").contains("Gateway 1");
+        cy.get("button").contains("Gateway 1").click();
+        cy.get("menu li").contains("All gateways").click();
+        cy.get("button").contains("All gateways");
     });
     it("renders from-to date selectors", function() {
         cy.get("button").contains("From date")

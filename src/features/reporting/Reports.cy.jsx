@@ -1,4 +1,4 @@
-import Reports from "./Reports";
+import Reports, { API } from "./Reports";
 
 describe("<Reports>", {
     viewportWidth: 1280,
@@ -10,7 +10,13 @@ describe("<Reports>", {
     });
     
     describe("projects and gateways", function() {
-        it("requests the list of projects and gateways on mount");
+        it("requests the list of projects and gateways on mount", function() {
+            cy.intercept("GET", API + "/projects").as("projects");
+            cy.intercept("GET", API + "/gateways").as("gateways");
+            cy.mount(<Reports />);
+            cy.wait("@projects");
+            cy.wait("@gateways");
+        });
         it("renders the reports toolbar when the request succeeds");
         it("renders error message if the request fails");
     });

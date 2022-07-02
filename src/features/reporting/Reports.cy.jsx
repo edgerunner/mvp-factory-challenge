@@ -17,7 +17,14 @@ describe("<Reports>", {
             cy.wait("@projects");
             cy.wait("@gateways");
         });
-        it("renders the reports toolbar when the request succeeds");
+        it("renders the reports toolbar when the request succeeds", function() {
+            cy.intercept("GET", API + "/projects").as("projects");
+            cy.intercept("GET", API + "/gateways").as("gateways");
+            cy.mount(<Reports />);
+            cy.wait("@projects");
+            cy.wait("@gateways");
+            cy.get("#report-toolbar");
+        });
         it("renders error message if the request fails");
     });
 

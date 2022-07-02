@@ -4,10 +4,13 @@ describe("<Reports>", {
     viewportWidth: 1280,
     viewportHeight: 720,
 }, function() {
-    it("renders placeholder pane on load");
+    it("renders placeholder pane on mount", function() {
+        cy.mount(<Reports />);
+        cy.get("#reports-placeholder h1").contains("No reports");
+    });
     
     describe("projects and gateways", function() {
-        it("requests the list of projects and gateways on load");
+        it("requests the list of projects and gateways on mount");
         it("renders the reports toolbar when the request succeeds");
         it("renders error message if the request fails");
     });

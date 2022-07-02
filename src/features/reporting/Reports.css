@@ -1,0 +1,34 @@
+main#reports {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    min-height: 80vh;
+    padding: 0;
+    margin: 0;
+}
+
+
+#reports-placeholder {
+    padding-bottom: 240px;
+    height: 100%;
+    width: 30rem;
+    background-image: url(./greenfield.svg);
+    background-repeat: no-repeat;
+    background-position: center bottom;
+}   
+
+#reports-placeholder h1, h5 {
+    margin: 0;
+    font-weight: 700;
+}
+
+#reports-placeholder h1 {
+    font-size: 24px;
+}
+
+#reports-placeholder h5 {
+    font-size: 16px;
+    color: #7E8299;
+}

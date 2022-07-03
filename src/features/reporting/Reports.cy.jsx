@@ -30,7 +30,14 @@ describe("<Reports>", {
     });
 
     describe("submits report requests", function() {
-        it("for all projects and gateways");
+        beforeEach(function() {
+            cy.intercept("POST", "**/report").as("report");
+            cy.wait(["@projects", "@gateways"]);
+        });
+        it("for all projects and gateways", function() {
+            cy.get("button.action").contains("report").click();
+            cy.wait("@report").its("request.body").should("deep.equal", {});
+        });
         it("for a single project and gateway");
         it("for a single project and all gateways");
         it("for a single gateway and all projects");

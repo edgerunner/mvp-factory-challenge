@@ -7,10 +7,18 @@ import machine from "./Reports.machine";
 
 export const API = "http://178.63.13.157:8090/mock-api/api";
 export default function Reports() {
-    const [state] = useMachine(machine, {
+    const [state, send] = useMachine(machine, {
         services: {
             projectsRequest: () => fetch(API + "/projects").then(res => res.json()),
             gatewaysRequest: () => fetch(API + "/gateways").then(res => res.json()),
+            reportRequest: (context, event) => fetch(API + "/report", {
+                method: "POST",
+                headers: { 
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify(event.filters),
+            }).then(res => res.json()),
         },
         actions: {
             putProjectsIntoContext: putEntityInContext("project"),
@@ -23,7 +31,8 @@ export default function Reports() {
                 ["Loading entities", () => <div className="under-construction">Loading projects and gateways</div>],
                 ["Entities loaded", () => <ReportToolbar
                     projects={state.context.projects}
-                    gateways={state.context.gateways} />],
+                    gateways={state.context.gateways} 
+                    onSubmit={filters => send({ type: "userSubmittedReportRequest", filters })}/>],
                 ["An entity failed to load", () => <div className="under-construction">Error loading projects and gateways <button>Retry</button></div>]
             ])}
         </ReportsHeader>

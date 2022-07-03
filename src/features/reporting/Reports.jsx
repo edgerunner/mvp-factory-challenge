@@ -20,11 +20,11 @@ export default function Reports() {
     return <main id="reports">
         <ReportsHeader>
             {mapState(state, [
-                ["Loading entities", () => <div>Loading projects and gateways</div>],
+                ["Loading entities", () => <div className="under-construction">Loading projects and gateways</div>],
                 ["Entities loaded", () => <ReportToolbar
                     projects={state.context.projects}
                     gateways={state.context.gateways} />],
-                ["An entity failed to load", () => <div>Error loading projects and gateways <button>Retry</button></div>]
+                ["An entity failed to load", () => <div className="under-construction">Error loading projects and gateways <button>Retry</button></div>]
             ])}
         </ReportsHeader>
         <Placeholder />

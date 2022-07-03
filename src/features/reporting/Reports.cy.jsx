@@ -41,28 +41,34 @@ describe("<Reports>", {
                 .should("not.have.keys", ["projectId", "gatewayId"]);
         });
         it("for a single project and gateway", function() {
-            cy.get("#report-toolbar button").contains("project").click();
-            cy.get("#report-toolbar menu li").contains("Project 1").click();
-            cy.get("#report-toolbar button").contains("gateway").click();
-            cy.get("#report-toolbar menu li").contains("Gateway 2").click();
-            cy.get("#report-toolbar button.action").contains("report").click();
+            cy.get("#report-toolbar").within(() => {
+                cy.get("button").contains("project").click();
+                cy.get("menu li").contains("Project 1").click();
+                cy.get("button").contains("gateway").click();
+                cy.get("menu li").contains("Gateway 2").click();
+                cy.get("button.action").contains("report").click();
+            });
             cy.wait("@report")
                 .its("request.body")
                 .should("have.keys", ["projectId", "gatewayId"]);
         });
         it("for a single project and all gateways", function() {
-            cy.get("#report-toolbar button").contains("project").click();
-            cy.get("#report-toolbar menu li").contains("Project 1").click();
-            cy.get("#report-toolbar button.action").contains("report").click();
+            cy.get("#report-toolbar").within(() => {
+                cy.get("button").contains("project").click();
+                cy.get("menu li").contains("Project 1").click();
+                cy.get("button.action").contains("report").click();
+            });
             cy.wait("@report")
                 .its("request.body")
                 .should("have.key", "projectId")
                 .and("not.have.key", "gatewayId");
         });
         it("for a single gateway and all projects", function() {
-            cy.get("#report-toolbar button").contains("gateway").click();
-            cy.get("#report-toolbar menu li").contains("Gateway 2").click();
-            cy.get("#report-toolbar button.action").contains("report").click();
+            cy.get("#report-toolbar").within(() => {
+                cy.get("button").contains("gateway").click();
+                cy.get("menu li").contains("Gateway 2").click();
+                cy.get("button.action").contains("report").click();
+            });
             cy.wait("@report")
                 .its("request.body")
                 .should("have.key", "gatewayId")

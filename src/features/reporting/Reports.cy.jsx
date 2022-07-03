@@ -78,10 +78,12 @@ describe("<Reports>", {
         });
     });
 
-    describe("renders reports", function() {
-        it("for all projects and gateways");
-        it("for a single project and gateway");
-        it("for a single project and all gateways");
-        it("for a single gateway and all projects");
+    it("renders the received report", function() {
+        cy.wait(["@projects", "@gateways"]);
+        cy.intercept("POST", "**/report", { fixture: "report" }).as("report");
+        cy.get("#report-toolbar button.action").contains("report").click();
+        cy.wait("@report");
+        cy.get("#reports-placeholder").should("not.exist");
+        cy.get("section#report").should("exist");
     });
 });

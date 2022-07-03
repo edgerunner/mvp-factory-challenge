@@ -9,6 +9,11 @@ main#reports {
     margin: 0;
 }
 
+main#reports section#report {
+    flex-grow: 1;
+    align-self: stretch;
+}
+
 
 #reports-placeholder {
     padding-bottom: 240px;

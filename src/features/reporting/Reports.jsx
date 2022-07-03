@@ -36,7 +36,13 @@ export default function Reports() {
                 ["An entity failed to load", () => <div className="under-construction">Error loading projects and gateways <button>Retry</button></div>]
             ])}
         </ReportsHeader>
-        <Placeholder />
+        {mapState(state, [
+            ["Loading entities", () => <Placeholder />],
+            ["An entity failed to load", () => <Placeholder />],
+            [{"Entities loaded": "No reports"}, () => <Placeholder />],
+            [{"Entities loaded": "Report pending"}, () => <div className="under-construction">Loading report</div>],
+            [{"Entities loaded": "Report shown"}, () => <section id="report" className="under-construction">Report loaded</section>],
+        ])}
     </main>;
 }
 

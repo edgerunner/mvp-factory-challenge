@@ -15,17 +15,16 @@ describe("<Reports>", {
     
     describe("projects and gateways", function() {
         it("requests the list of projects and gateways on mount", function() {
-            cy.wait("@projects");
-            cy.wait("@gateways");
+            cy.wait(["@projects", "@gateways"]);
         });
         it("renders the reports toolbar when the request succeeds", function() {
-            cy.wait("@projects");
-            cy.wait("@gateways");
+            cy.wait(["@projects", "@gateways"]);
             cy.get("#report-toolbar");
         });
         it("renders error message if the request fails", function() {
             cy.intercept("GET", "**/projects", { statusCode: 500 }).as("projects");
             cy.mount(<Reports />);
+            cy.wait(["@projects", "@gateways"]);
             cy.get("#reports-header button").contains("Retry");
         });
     });

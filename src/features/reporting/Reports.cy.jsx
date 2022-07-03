@@ -36,7 +36,9 @@ describe("<Reports>", {
         });
         it("for all projects and gateways", function() {
             cy.get("#report-toolbar button.action").contains("report").click();
-            cy.wait("@report").its("request.body").should("deep.equal", {});
+            cy.wait("@report")
+                .its("request.body")
+                .should("not.have.keys", ["projectId", "gatewayId"]);
         });
         it("for a single project and gateway", function() {
             cy.get("#report-toolbar button").contains("project").click();

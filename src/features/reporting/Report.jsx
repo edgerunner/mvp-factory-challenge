@@ -1,17 +1,21 @@
-import { DataBlock, Date as Date_, Currency, Column } from "/src/components";
+import { DataSection, Date as Date_, Currency, Column } from "/src/components";
 
 export default function Report({ report, projects, gateways }) {
     const resolved = resolve(report, projects, gateways);
+    const partitioned = partition(resolved);
+    console.log(partitioned);
     return (
         <div id="report">
-            <DataBlock open data={resolved} header="Report" >
+            <DataSection 
+                data={partitioned}
+                header="All transactions"
+                blockHeader={block => block[0].project.name}>
                 <Column header="Date">{row => <Date_ date={row.created}/>}</Column>
-                <Column header="Project">{row => row.project.name}</Column>
                 <Column header="Gateway">{row => row.gateway.name}</Column>
                 <Column header="Amount">
                     {row => <Currency amount={row.amount} code="USD"/>}
                 </Column>
-            </DataBlock>
+            </DataSection>
         </div>
     );
 }   
@@ -28,4 +32,11 @@ function resolve(rawData, projectsArray, gatewaysArray) {
         created: new Date(block.created),
         modified: new Date(block.modified)
     }));
+}
+
+function partition(data) {
+    return [...data.reduce((map, block) =>
+        map.set(block.projectId,
+            [...(map.get(block.projectId) || []), block])
+    , new Map()).values()];
 }

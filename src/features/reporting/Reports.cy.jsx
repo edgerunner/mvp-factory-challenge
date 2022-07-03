@@ -31,7 +31,9 @@ describe("<Reports>", {
 
     describe("submits report requests", function() {
         beforeEach(function() {
-            cy.intercept("POST", "**/report").as("report");
+            cy.intercept("POST", "**/report", {
+                code: 200, data: [], error: null
+            }).as("report");
             cy.wait(["@projects", "@gateways"]);
         });
         it("for all projects and gateways", function() {

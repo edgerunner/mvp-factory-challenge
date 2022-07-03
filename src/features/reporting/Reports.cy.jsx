@@ -23,7 +23,11 @@ describe("<Reports>", {
             cy.wait("@gateways");
             cy.get("#report-toolbar");
         });
-        it("renders error message if the request fails");
+        it("renders error message if the request fails", function() {
+            cy.intercept("GET", "**/projects", { statusCode: 500 }).as("projects");
+            cy.mount(<Reports />);
+            cy.get("#reports-header button").contains("Retry");
+        });
     });
 
     describe("submits report requests", function() {

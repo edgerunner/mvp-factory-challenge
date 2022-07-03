@@ -19,14 +19,13 @@ export default function Reports() {
     });
     return <main id="reports">
         <ReportsHeader>
-            {(state.matches("Loading entities")) 
-                ? <div>Loading projects and gateways</div> 
-                : state.matches("Entities loaded")
-                    ? <ReportToolbar 
-                        projects={state.context.projects} 
-                        gateways={state.context.gateways} />
-                    : null
-            }
+            {mapState(state, [
+                ["Loading entities", () => <div>Loading projects and gateways</div>],
+                ["Entities loaded", () => <ReportToolbar
+                    projects={state.context.projects}
+                    gateways={state.context.gateways} />],
+                ["An entity failed to load", () => <div>Error loading projects and gateways <button>Retry</button></div>]
+            ])}
         </ReportsHeader>
         <Placeholder />
     </main>;
@@ -51,4 +50,13 @@ function putEntityInContext(entity) {
     return assign({
         [`${entity}s`]: (_, event) => event.data.data.map(e => ({ id: e[`${entity}Id`], name: e.name })),
     });
+}
+
+function mapState(state, mappings, defaultValue = null) {
+    for (const [matcher, mapping] of mappings) {
+        if (state.matches(matcher)) {
+            return mapping();
+        }
+    }
+    return defaultValue;
 }

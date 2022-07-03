@@ -1,4 +1,5 @@
 import DataBlock from "./DataBlock";
+import "./DataSection.css";
 
 export default function DataSection({ children: columns, data, header, blockHeader }) {
     return (

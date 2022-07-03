@@ -48,8 +48,24 @@ describe("<Reports>", {
                 .its("request.body")
                 .should("have.keys", ["projectId", "gatewayId"]);
         });
-        it("for a single project and all gateways");
-        it("for a single gateway and all projects");
+        it("for a single project and all gateways", function() {
+            cy.get("#report-toolbar button").contains("project").click();
+            cy.get("#report-toolbar menu li").contains("Project 1").click();
+            cy.get("#report-toolbar button.action").contains("report").click();
+            cy.wait("@report")
+                .its("request.body")
+                .should("have.key", "projectId")
+                .and("not.have.key", "gatewayId");
+        });
+        it("for a single gateway and all projects", function() {
+            cy.get("#report-toolbar button").contains("gateway").click();
+            cy.get("#report-toolbar menu li").contains("Gateway 2").click();
+            cy.get("#report-toolbar button.action").contains("report").click();
+            cy.wait("@report")
+                .its("request.body")
+                .should("have.key", "gatewayId")
+                .and("not.have.key", "projectId");
+        });
     });
 
     describe("renders reports", function() {

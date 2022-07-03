@@ -23,6 +23,12 @@ export default function Reports() {
         actions: {
             putProjectsIntoContext: putEntityInContext("project"),
             putGatewaysIntoContext: putEntityInContext("gateway"),
+            putReportIntoContext: () => assign({
+                report: (_, event) => event.data.data,
+            }),
+        },
+        guards: {
+            emptyReport: (_, event) => event.data.data.length === 0,
         }
     });
     return <main id="reports">

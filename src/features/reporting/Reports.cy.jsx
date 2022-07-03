@@ -35,10 +35,19 @@ describe("<Reports>", {
             cy.wait(["@projects", "@gateways"]);
         });
         it("for all projects and gateways", function() {
-            cy.get("button.action").contains("report").click();
+            cy.get("#report-toolbar button.action").contains("report").click();
             cy.wait("@report").its("request.body").should("deep.equal", {});
         });
-        it("for a single project and gateway");
+        it("for a single project and gateway", function() {
+            cy.get("#report-toolbar button").contains("project").click();
+            cy.get("#report-toolbar menu li").contains("Project 1").click();
+            cy.get("#report-toolbar button").contains("gateway").click();
+            cy.get("#report-toolbar menu li").contains("Gateway 2").click();
+            cy.get("#report-toolbar button.action").contains("report").click();
+            cy.wait("@report")
+                .its("request.body")
+                .should("have.keys", ["projectId", "gatewayId"]);
+        });
         it("for a single project and all gateways");
         it("for a single gateway and all projects");
     });

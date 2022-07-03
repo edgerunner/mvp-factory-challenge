@@ -58,8 +58,8 @@ describe("<ReportToolbar>", {
             cy.get("menu li").contains("Gateway 2").click();
             cy.get("button").contains("Generate report").click();
             cy.get("@onSubmit").should("be.calledWith", {
-                project: "p1",
-                gateway: "g2"
+                projectId: "p1",
+                gatewayId: "g2"
             });
         });
         it("with a single project parameter", function() {
@@ -67,7 +67,7 @@ describe("<ReportToolbar>", {
             cy.get("menu li").contains("Project 1").click();
             cy.get("button").contains("Generate report").click();
             cy.get("@onSubmit").should("be.calledWith", {
-                project: "p1"
+                projectId: "p1"
             });
         });
         it("with a single gateway parameter", function() {
@@ -75,7 +75,7 @@ describe("<ReportToolbar>", {
             cy.get("menu li").contains("Gateway 2").click();
             cy.get("button").contains("Generate report").click();
             cy.get("@onSubmit").should("be.calledWith", {
-                gateway: "g2"
+                gatewayId: "g2"
             });
         });
     });

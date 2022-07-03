@@ -11,8 +11,8 @@ export default function ReportToolbar({ projects, gateways, onSubmit }) {
 
     const submit = useCallback(() => {
         const parameters = {};
-        if (project.id) parameters.project = project.id;
-        if (gateway.id) parameters.gateway = gateway.id;
+        if (project.id) parameters.projectId = project.id;
+        if (gateway.id) parameters.gatewayId = gateway.id;
         onSubmit(parameters);
     }, [project, gateway, onSubmit]);
 

@@ -29,4 +29,17 @@ describe("<Table>", function() {
         cy.get("table th:nth-child(2)").contains("Name");
         cy.get("table th:nth-child(3)").contains("Age");
     });
+
+    it("ignores null children safely", function() {
+        cy.mount(
+            <Table data={sample}>
+                <Column header="ID">{row => row.id}</Column>
+                {null}
+                <Column header="Name">{row => row.name}</Column>
+                {false}
+                <Column header="Age">{row => row.age}</Column>
+            </Table>
+        );
+        cy.get("table").should("exist");
+    });
 });

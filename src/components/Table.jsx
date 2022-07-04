@@ -31,7 +31,10 @@ function Row({ schema, data }) {
 
 
 function makeSchema(columns) {
-    return Children.map(columns, 
-        ({ props: { children: render, id, header } }) => ({ render, id, header })
-    );
+    return Children.toArray(columns)
+        .filter(child => child)
+        .map( 
+            ({ props: { children: render, id, header } }) => 
+                ({ render, id, header })
+        );
 }

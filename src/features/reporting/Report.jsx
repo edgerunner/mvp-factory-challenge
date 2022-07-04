@@ -1,13 +1,18 @@
 import { DataSection, Date as Date_, Currency, Column } from "/src/components";
 
 export default function Report({ report, projects, gateways }) {
+    projects = projects.reduce((map, project) =>
+        map.set(project.projectId, project), new Map());
+    gateways = gateways.reduce((map, gateway) =>
+        map.set(gateway.gatewayId, gateway), new Map());
+
     const resolved = resolve(report, projects, gateways);
     const [projectId, gatewayId] = extract(resolved);
     const projectName = projectId ? resolved[0].project.name : "All projects";
     const gatewayName = gatewayId ? resolved[0].gateway.name : "All gateways";
     
     const partitionBy = projectId && !gatewayId ? "gateway" : "project";
-    const partitioned = partition(resolved, partitionBy);
+    const partitioned = partition(resolved, partitionBy, {projects, gateways});
 
     const blockHeader = block => projectId && gatewayId
         ? null
@@ -31,25 +36,25 @@ export default function Report({ report, projects, gateways }) {
     );
 }   
 
-function resolve(rawData, projectsArray, gatewaysArray) {
-    const projects = projectsArray.reduce((map, project) =>
-        ({ ...map, [project.projectId]: project}), {});
-    const gateways = gatewaysArray.reduce((map, gateway) =>
-        ({ ...map, [gateway.gatewayId]: gateway}), {});
+function resolve(rawData, projects, gateways) {
     return rawData.map(block => ({
         ...block,
-        project: projects[block.projectId],
-        gateway: gateways[block.gatewayId],
+        project: projects.get(block.projectId),
+        gateway: gateways.get(block.gatewayId),
         created: new Date(block.created),
         modified: new Date(block.modified)
     }));
 }
 
-function partition(data, partitionBy) {
+function partition(data, partitionBy, entities) {
     return [...data.reduce((map, block) =>
         map.set(block[partitionBy],
             [...(map.get(block[partitionBy]) || []), block])
-    , new Map()).values()];
+    , new Map(
+        Array.from(entities[`${partitionBy}s`].values())
+            .map(entity => [entity, []])
+    )).values()
+    ];
 }
 
 function extract(data) {

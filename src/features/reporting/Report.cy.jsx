@@ -28,6 +28,9 @@ describe("<Report>", {
         cy.contains("section > header:first-child", "All projects")
             .contains("All gateways");
 
+        cy.log("partition ordering");
+        cy.contains("header", "Project 1").parent("article")
+            .next("article").contains("header", "Project 2");
         
         cy.log("column rendering");
         cy.contains("th", "Gateway").should("exist");
@@ -46,6 +49,10 @@ describe("<Report>", {
         cy.log("header rendering");
         cy.contains("section > header:first-child", "Project 2")
             .contains("All gateways");
+
+        cy.log("partition ordering");
+        cy.contains("header", "Gateway 1").parent("article")
+            .next("article").contains("header", "Gateway 2");
 
         cy.log("column rendering");
         cy.contains("th", "Gateway").should("not.exist");

@@ -84,7 +84,7 @@ describe("<Reports>", {
         cy.get("#report-toolbar button.action").contains("report").click();
         cy.wait("@report");
         cy.get("#reports-placeholder").should("not.exist");
-        cy.get("section#report").should("exist");
+        cy.get("#report").should("exist");
     });
 
     it("renders placeholder for empty reports", function() {

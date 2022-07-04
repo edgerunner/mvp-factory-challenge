@@ -116,11 +116,9 @@ createMachine({
     }).then(res => res.json()),
   },
   actions: {
-    putProjectsIntoContext: putEntityInContext("project"),
-    putGatewaysIntoContext: putEntityInContext("gateway"),
-    putReportIntoContext: () => assign({
-      report: (_, event) => event.data.data,
-    }),
+    putProjectsIntoContext: putEntityInContext("projects"),
+    putGatewaysIntoContext: putEntityInContext("gateways"),
+    putReportIntoContext: putEntityInContext("report"),
   },
   guards: {
     emptyReport: (_, event) => event.data.data.length === 0,
@@ -129,6 +127,6 @@ createMachine({
 
 function putEntityInContext(entity) {
   return assign({
-    [`${entity}s`]: (_, event) => event.data.data.map(e => ({ id: e[`${entity}Id`], name: e.name })),
+    [entity]: (_, event) => event.data.data
   });
 }

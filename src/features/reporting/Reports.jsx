@@ -3,6 +3,8 @@ import ReportsHeader from "./ReportsHeader";
 import ReportToolbar from "./ReportToolbar";
 import { useMachine } from "@xstate/react";
 import machine from "./Reports.machine";
+import Report from "./Report";
+
 export default function Reports() {
     const [state, send] = useMachine(machine);
     return <main id="reports">
@@ -21,7 +23,7 @@ export default function Reports() {
             ["An entity failed to load", () => <Placeholder />],
             [{"Entities loaded": "No reports"}, () => <Placeholder />],
             [{"Entities loaded": "Report pending"}, () => <div className="under-construction">Loading report</div>],
-            [{"Entities loaded": "Report shown"}, () => <section id="report" className="under-construction">Report loaded</section>],
+            [{"Entities loaded": "Report shown"}, () => <Report {...state.context}/>],
         ])}
     </main>;
 }

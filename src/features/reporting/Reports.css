@@ -2,18 +2,13 @@ main#reports {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center;
+    align-items: stretch;
     width: 100%;
     min-height: 80vh;
     padding: 0;
     margin: 0;
+    gap: 16px;
 }
-
-main#reports section#report {
-    flex-grow: 1;
-    align-self: stretch;
-}
-
 
 #reports-placeholder {
     padding-bottom: 240px;
@@ -22,6 +17,7 @@ main#reports section#report {
     background-image: url(./greenfield.svg);
     background-repeat: no-repeat;
     background-position: center bottom;
+    align-self: center;
 }   
 
 #reports-placeholder h1, h5 {

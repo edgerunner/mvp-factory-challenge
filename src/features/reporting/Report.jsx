@@ -3,7 +3,6 @@ import { DataSection, Date as Date_, Currency, Column } from "/src/components";
 export default function Report({ report, projects, gateways }) {
     const resolved = resolve(report, projects, gateways);
     const partitioned = partition(resolved);
-    console.log(partitioned);
     return (
         <div id="report">
             <DataSection 

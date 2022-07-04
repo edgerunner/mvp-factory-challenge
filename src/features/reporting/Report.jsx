@@ -7,7 +7,7 @@ export default function Report({ report, projects, gateways }) {
         <div id="report">
             <DataSection 
                 data={partitioned}
-                header="All transactions"
+                header="All projects | All gateways"
                 blockHeader={block => block[0].project.name}>
                 <Column header="Date">{row => <Date_ date={row.created}/>}</Column>
                 <Column header="Gateway">{row => row.gateway.name}</Column>

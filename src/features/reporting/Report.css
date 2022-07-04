@@ -1,0 +1,3 @@
+#report :is(td, th):last-child {
+    text-align: end;
+}

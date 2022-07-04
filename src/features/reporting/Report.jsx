@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { DataSection, Date as Date_, Currency, Column } from "/src/components";
+import "./Report.css";
 
 export default function Report(props) {
     const { mode, data, names, renderHeader } = useTransform(props);

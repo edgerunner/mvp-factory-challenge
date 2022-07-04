@@ -23,6 +23,11 @@ describe("<Report>", {
         cy.log("header rendering");
         cy.contains("section > header:first-child", "All projects")
             .contains("All gateways");
+
+        
+        cy.log("column rendering");
+        cy.contains("th", "Gateway").should("exist");
+        cy.contains("th", "Project").should("not.exist");
     });
     it("renders single project", function() {
         cy.mount(
@@ -37,6 +42,10 @@ describe("<Report>", {
         cy.log("header rendering");
         cy.contains("section > header:first-child", "Project 2")
             .contains("All gateways");
+
+        cy.log("column rendering");
+        cy.contains("th", "Gateway").should("not.exist");
+        cy.contains("th", "Project").should("not.exist");
     });
     it("renders single gateway", function() {
         cy.mount(
@@ -51,6 +60,10 @@ describe("<Report>", {
         cy.log("header rendering");
         cy.contains("section > header:first-child", "Gateway 1")
             .contains("All projects");
+
+        cy.log("column rendering");
+        cy.contains("th", "Gateway").should("not.exist");
+        cy.contains("th", "Project").should("not.exist");
     });
     it("renders single project and gateway");
 });

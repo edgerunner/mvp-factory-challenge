@@ -16,7 +16,9 @@ export default function Report({ report, projects, gateways }) {
                 header={`${projectName} | ${gatewayName}`}
                 blockHeader={block => block[0][partitionBy].name}>
                 <Column header="Date">{row => <Date_ date={row.created}/>}</Column>
-                <Column header="Gateway">{row => row.gateway.name}</Column>
+                {partitionBy === "project" && !gatewayId
+                    ? <Column header="Gateway">{row => row.gateway.name}</Column>
+                    : null}
                 <Column header="Amount">
                     {row => <Currency amount={row.amount} code="USD"/>}
                 </Column>

@@ -9,12 +9,16 @@ export default function Report({ report, projects, gateways }) {
     const partitionBy = projectId && !gatewayId ? "gateway" : "project";
     const partitioned = partition(resolved, partitionBy);
 
+    const blockHeader = block => projectId && gatewayId
+        ? null
+        : block[0][partitionBy].name;
+
     return (
         <div id="report">
             <DataSection 
                 data={partitioned}
                 header={`${projectName} | ${gatewayName}`}
-                blockHeader={block => block[0][partitionBy].name}>
+                blockHeader={blockHeader}>
                 <Column header="Date">{row => <Date_ date={row.created}/>}</Column>
                 {partitionBy === "project" && !gatewayId
                     ? <Column header="Gateway">{row => row.gateway.name}</Column>

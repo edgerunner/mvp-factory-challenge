@@ -1,6 +1,10 @@
 import Report from "./Report";
 import { 
-    report, reportProject2, reportGateway1, projects, gateways 
+    report,
+    reportProject2,
+    reportGateway1,
+    reportProject1Gateway2,
+    projects, gateways 
 } from "/cypress/fixtures";
 
 describe("<Report>", {
@@ -65,5 +69,23 @@ describe("<Report>", {
         cy.contains("th", "Gateway").should("not.exist");
         cy.contains("th", "Project").should("not.exist");
     });
-    it("renders single project and gateway");
+    it("renders single project and gateway", function() {
+        cy.mount(
+            <Report report={reportProject1Gateway2.data} 
+                projects={projects.data} 
+                gateways={gateways.data} />);
+        
+        cy.log("data rendering");
+        cy.get("article")
+            .contains("tr", "02/15/2021").contains("73 USD");
+        
+        cy.log("header rendering");
+        cy.contains("section > header:first-child", "Project 1")
+            .contains("Gateway 2");
+        cy.get("article > header").should("not.exist");
+
+        cy.log("column rendering");
+        cy.contains("th", "Gateway").should("not.exist");
+        cy.contains("th", "Project").should("not.exist");
+    });
 });

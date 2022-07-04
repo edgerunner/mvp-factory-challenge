@@ -1,0 +1,204 @@
+{
+  "code": "200",
+  "data": [
+    {
+      "paymentId": "6149cf56625a7464b7ec345a",
+      "amount": 327.72,
+      "projectId": "bgYhx",
+      "gatewayId": "GzFF8",
+      "userIds": [
+        "rahej"
+      ],
+      "modified": "2021-04-17",
+      "created": "2021-04-21"
+    },
+    {
+      "paymentId": "6149cf565833d66717b7fd5e",
+      "amount": 403.08,
+      "projectId": "bgYhx",
+      "gatewayId": "GzFF8",
+      "userIds": [
+        "rahej"
+      ],
+      "modified": "2021-04-13",
+      "created": "2021-07-18"
+    },
+    {
+      "paymentId": "6149cf56b561e56a5358f033",
+      "amount": 388.02,
+      "projectId": "bgYhx",
+      "gatewayId": "GzFF8",
+      "userIds": [
+        "rahej"
+      ],
+      "modified": "2021-07-22",
+      "created": "2021-09-10"
+    },
+    {
+      "paymentId": "6149cf566b3eda010dffd335",
+      "amount": 3775.58,
+      "projectId": "bgYhx",
+      "gatewayId": "GzFF8",
+      "userIds": [
+        "rahej"
+      ],
+      "modified": "2021-07-23",
+      "created": "2021-08-04"
+    },
+    {
+      "paymentId": "6149cf56a6d7fb52c9514288",
+      "amount": 3986.93,
+      "projectId": "bgYhx",
+      "gatewayId": "GzFF8",
+      "userIds": [
+        "rahej"
+      ],
+      "modified": "2021-05-28",
+      "created": "2021-05-29"
+    },
+    {
+      "paymentId": "6149cf56acab8c9214c328ba",
+      "amount": 138.21,
+      "projectId": "bgYhx",
+      "gatewayId": "GzFF8",
+      "userIds": [
+        "rahej"
+      ],
+      "modified": "2021-08-09",
+      "created": "2021-05-06"
+    },
+    {
+      "paymentId": "6149cf56b4003e52519554ca",
+      "amount": 1585.04,
+      "projectId": "bgYhx",
+      "gatewayId": "GzFF8",
+      "userIds": [
+        "rahej"
+      ],
+      "modified": "2021-07-07",
+      "created": "2021-06-07"
+    },
+    {
+      "paymentId": "6149cf5662c0c7820ca2fcb0",
+      "amount": 1757.61,
+      "projectId": "bgYhx",
+      "gatewayId": "GzFF8",
+      "userIds": [
+        "rahej"
+      ],
+      "modified": "2021-06-05",
+      "created": "2021-07-19"
+    },
+    {
+      "paymentId": "6149cf56e850af64ff477a9f",
+      "amount": 2875.86,
+      "projectId": "bgYhx",
+      "gatewayId": "GzFF8",
+      "userIds": [
+        "rahej"
+      ],
+      "modified": "2021-06-01",
+      "created": "2021-08-04"
+    },
+    {
+      "paymentId": "6149cf561baa06ff20262b6f",
+      "amount": 2417.05,
+      "projectId": "bgYhx",
+      "gatewayId": "GzFF8",
+      "userIds": [
+        "rahej"
+      ],
+      "modified": "2021-04-24",
+      "created": "2021-03-11"
+    },
+    {
+      "paymentId": "6149cf56d7ba96e40620e0cd",
+      "amount": 3347.65,
+      "projectId": "bgYhx",
+      "gatewayId": "GzFF8",
+      "userIds": [
+        "rahej"
+      ],
+      "modified": "2021-03-21",
+      "created": "2021-09-12"
+    },
+    {
+      "paymentId": "6149cf566c4a1408972ee1c7",
+      "amount": 366.42,
+      "projectId": "bgYhx",
+      "gatewayId": "GzFF8",
+      "userIds": [
+        "rahej"
+      ],
+      "modified": "2021-04-30",
+      "created": "2021-07-27"
+    },
+    {
+      "paymentId": "6149cf56e158210731a1fb89",
+      "amount": 132.93,
+      "projectId": "bgYhx",
+      "gatewayId": "GzFF8",
+      "userIds": [
+        "rahej"
+      ],
+      "modified": "2021-06-01",
+      "created": "2021-06-06"
+    },
+    {
+      "paymentId": "6149cf5672c3b07e64c33f34",
+      "amount": 2759.67,
+      "projectId": "bgYhx",
+      "gatewayId": "GzFF8",
+      "userIds": [
+        "rahej"
+      ],
+      "modified": "2021-02-20",
+      "created": "2021-07-02"
+    },
+    {
+      "paymentId": "6149cf56beea87a5cfc4aba8",
+      "amount": 2012.87,
+      "projectId": "bgYhx",
+      "gatewayId": "GzFF8",
+      "userIds": [
+        "rahej"
+      ],
+      "modified": "2021-06-23",
+      "created": "2021-05-09"
+    },
+    {
+      "paymentId": "6149cf56039cb62733114812",
+      "amount": 72.87,
+      "projectId": "bgYhx",
+      "gatewayId": "GzFF8",
+      "userIds": [
+        "rahej"
+      ],
+      "modified": "2021-08-27",
+      "created": "2021-02-15"
+    },
+    {
+      "paymentId": "6149cf5664f3a8f2c6dfa7d5",
+      "amount": 2632.02,
+      "projectId": "bgYhx",
+      "gatewayId": "GzFF8",
+      "userIds": [
+        "rahej"
+      ],
+      "modified": "2021-08-16",
+      "created": "2021-06-02"
+    },
+    {
+      "paymentId": "6149cf56ae3f9cd9380f33ed",
+      "amount": 2301.07,
+      "projectId": "bgYhx",
+      "gatewayId": "GzFF8",
+      "userIds": [
+        "rahej"
+      ],
+      "modified": "2021-06-17",
+      "created": "2021-04-15"
+    }
+  ],
+  "error": null
+}

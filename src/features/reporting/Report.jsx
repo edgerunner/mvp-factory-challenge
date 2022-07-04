@@ -12,6 +12,7 @@ export default function Report(props) {
                 blockHeader={renderHeader}>
                 <Column header="Date">{row => <Date_ date={row.created}/>}</Column>
                 {mode === "all" && <Column header="Gateway">{row => row.gateway.name}</Column>}
+                <Column header="Transaction ID">{row => row.paymentId}</Column>
                 <Column header="Amount">
                     {row => <Currency amount={row.amount} code="USD"/>}
                 </Column>

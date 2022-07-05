@@ -1,0 +1,28 @@
+#app {
+    display: grid;
+    grid-template-columns: 100px 1fr 100px;
+    grid-template-rows: 80px 1fr 80px;
+    grid-template-areas:
+        "header header header"
+        "left main right"
+        "footer footer footer";
+    width: 100vw;
+    min-height: calc(100vh - 16px);
+    box-sizing: border-box;
+}
+
+#app > header#app-header {
+    grid-area: header;
+}
+
+#app > nav#nav-menu {
+    grid-area: left;
+}
+
+#app > main {
+    grid-area: main;
+}
+
+#app > footer#app-footer {
+    grid-area: footer;
+}

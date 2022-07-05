@@ -1,0 +1,36 @@
+#app {
+    display: grid;
+    grid-template-columns: 100px 1fr 100px;
+    grid-template-rows: 80px 1fr 80px;
+    grid-template-areas:
+        "header header ."
+        "left main right"
+        ". footer .";
+    width: 100vw;
+    min-height: calc(100vh - 16px);
+    box-sizing: border-box;
+    row-gap: 32px;
+}
+
+#app > header#app-header {
+    grid-area: header;
+}
+
+#app > nav#nav-menu {
+    grid-area: left;
+
+    background-image: url(./assets/nav-placeholder.svg);
+    background-repeat: no-repeat;
+    background-position: top center;
+}
+
+#app > main {
+    grid-area: main;
+}
+
+#app > footer#app-footer {
+    grid-area: footer;
+    display: flex;
+    align-items: center;
+    gap: 2em;
+}

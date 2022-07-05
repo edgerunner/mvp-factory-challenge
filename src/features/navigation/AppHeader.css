@@ -1,0 +1,45 @@
+header#app-header {
+    display: grid;
+    grid-template-columns: 100px 40px 1fr auto;
+    grid-template-rows: 1fr;
+    grid-template-areas: "logo menu . user";
+    width: 100%;
+    min-height: 100px;
+    align-items: stretch;
+
+    border-bottom: solid 1px #F3F6F9;
+    box-sizing: border-box;
+}
+
+header#app-header > a#logo {
+    grid-area: logo;
+    background-image: url(./assets/b-logo.svg);
+}
+
+header#app-header > button#nav-menu {
+    grid-area: menu;
+
+    background-image: url(./assets/nav-menu.svg);
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+header#app-header > :is(button#nav-menu, a#logo) {
+    background-repeat: no-repeat;
+    background-position: center;
+
+    text-align: center;
+    color: transparent;
+}
+
+header#app-header > div#current-user {
+    grid-area: user;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 16px;
+    font-weight: 700;
+}

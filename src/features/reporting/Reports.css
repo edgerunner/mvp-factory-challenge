@@ -16,13 +16,15 @@ main#reports {
     width: 30rem;
     background-image: url(./greenfield.svg);
     background-repeat: no-repeat;
-    background-position: center bottom;
+    background-position: center 120px;
     align-self: center;
+    margin-top: 120px;
 }   
 
 #reports-placeholder h1, h5 {
     margin: 0;
     font-weight: 700;
+    text-align: center;
 }
 
 #reports-placeholder h1 {

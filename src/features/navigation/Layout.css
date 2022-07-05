@@ -5,10 +5,11 @@
     grid-template-areas:
         "header header header"
         "left main right"
-        "footer footer footer";
+        ". footer .";
     width: 100vw;
     min-height: calc(100vh - 16px);
     box-sizing: border-box;
+    row-gap: 32px;
 }
 
 #app > header#app-header {
@@ -25,4 +26,7 @@
 
 #app > footer#app-footer {
     grid-area: footer;
+    display: flex;
+    align-items: center;
+    gap: 2em;
 }

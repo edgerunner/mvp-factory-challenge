@@ -13,7 +13,10 @@ export default function Layout({ children }) {
             {children}
             
             <footer id="app-footer">
-               App footer
+                <p>
+                    Built by <a href="mailto:mert@merttorun.com">Mert Torun</a> in
+                    July 2022 for MVP Factory
+                </p>
             </footer>
         </div>
     );

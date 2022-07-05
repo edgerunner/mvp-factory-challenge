@@ -1,13 +1,13 @@
 import ReportToolbar from "./ReportToolbar";
 
 const projects = [
-    { id: "p1", name: "Project 1" },
-    { id: "p2", name: "Project 2" },
+    { projectId: "p1", name: "Project 1" },
+    { projectId: "p2", name: "Project 2" },
 ];
 
 const gateways = [
-    { id: "g1", name: "Gateway 1" },
-    { id: "g2", name: "Gateway 2" },
+    { gatewayId: "g1", name: "Gateway 1" },
+    { gatewayId: "g2", name: "Gateway 2" },
 ];
 
 describe("<ReportToolbar>", {

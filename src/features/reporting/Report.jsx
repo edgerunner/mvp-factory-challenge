@@ -1,9 +1,9 @@
 import { useMemo } from "react";
-import { DataSection, Date as Date_, Currency, Column } from "/src/components";
+import { DataSection, Date as Date_, Currency, Column, Summary } from "/src/components";
 import "./Report.css";
 
 export default function Report(props) {
-    const { mode, data, names, renderHeader } = useTransform(props);
+    const { mode, data, names, renderHeader, total, totalTitle } = useTransform(props);
 
     return (
         <div id="report">
@@ -18,6 +18,9 @@ export default function Report(props) {
                     {row => <Currency amount={row.amount} code="USD"/>}
                 </Column>
             </DataSection>
+            <Summary>
+                {totalTitle} | <Currency amount={total} code="USD"/>
+            </Summary>
         </div>
     );
 }   
@@ -31,6 +34,8 @@ function useTransform({ report, projects, gateways }) {
             map.set(gateway.gatewayId, { ...gateway, blocks: [] }),
         new Map());
 
+        let total = 0;
+
         for (const block of report) {
             block.project = projects.get(block.projectId);
             block.gateway = gateways.get(block.gatewayId);
@@ -39,6 +44,8 @@ function useTransform({ report, projects, gateways }) {
 
             block.project.blocks.push(block);
             block.gateway.blocks.push(block);
+
+            total += block.amount;
         }
 
         for (const project of projects.values())
@@ -78,7 +85,14 @@ function useTransform({ report, projects, gateways }) {
             single: () => null
         }[mode];
 
-        return { mode, data, names, renderHeader };
+        const totalTitle = {
+            all: "Total",
+            project: "Project total",
+            gateway: "Gateway total",
+            single: "Total"
+        }[mode];
+
+        return { mode, data, names, renderHeader, total, totalTitle };
 
     }, [report, projects, gateways]);
 }

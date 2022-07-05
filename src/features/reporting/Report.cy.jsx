@@ -95,4 +95,13 @@ describe("<Report>", {
         cy.contains("th", "Gateway").should("not.exist");
         cy.contains("th", "Project").should("not.exist");
     });
+
+    it("shows the total amount", function() {
+        cy.mount(
+            <Report report={report.data} 
+                projects={projects.data} 
+                gateways={gateways.data} />);
+
+        cy.contains("footer", "Total").contains("190,740 USD");
+    });
 });

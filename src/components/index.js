@@ -5,4 +5,5 @@ export { default as DataBlock } from "./DataBlock";
 export { default as DataSection } from "./DataSection";
 export { default as Date } from "./Date";
 export { default as Menu } from "./Menu";
+export { default as Summary } from "./Summary";
 export { default as Table, Column } from "./Table";

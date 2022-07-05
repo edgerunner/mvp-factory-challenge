@@ -1,3 +1,9 @@
+#report {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
 #report :is(td, th):last-child {
     text-align: end;
 }

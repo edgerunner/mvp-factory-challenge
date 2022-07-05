@@ -6,8 +6,10 @@ export default function Layout({ children }) {
             <header id="app-header">
                 App header
             </header>
-            <nav id="nav-menu">
-                Navigation menu
+            <nav 
+                id="nav-menu" 
+                title="Hey! This is a dummy component until it is implemented">
+                    &nbsp;
             </nav>
             
             {children}

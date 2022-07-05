@@ -18,6 +18,10 @@
 
 #app > nav#nav-menu {
     grid-area: left;
+
+    background-image: url(./assets/nav-placeholder.svg);
+    background-repeat: no-repeat;
+    background-position: top center;
 }
 
 #app > main {

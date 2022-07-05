@@ -1,7 +1,7 @@
 table {
     width: 100%;
     background: #F1FAFE;
-    border-spacing: 0;
+    border-spacing: 0 5px;
 }
 
 th {

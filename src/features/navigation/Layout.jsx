@@ -1,11 +1,9 @@
 import "./Layout.css";
-
+import AppHeader from "./AppHeader";
 export default function Layout({ children }) {
     return (
         <div id="app">
-            <header id="app-header">
-                App header
-            </header>
+            <AppHeader />
             <nav 
                 id="nav-menu" 
                 title="Hey! This is a dummy component until it is implemented">

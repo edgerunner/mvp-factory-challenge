@@ -1,0 +1,15 @@
+span.avatar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    aspect-ratio: 1;
+    border-radius: 5px;
+    background-color: #F6CA65;
+    color: #fff;
+    font-weight: 700;
+}
+
+span.avatar.initials-1 { font-size: 32px; }
+span.avatar.initials-2 { font-size: 24px; }
+span.avatar.initials-3 { font-size: 16px; }

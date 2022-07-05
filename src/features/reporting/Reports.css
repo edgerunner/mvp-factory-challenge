@@ -21,7 +21,7 @@ main#reports {
     margin-top: 120px;
 }   
 
-#reports-placeholder h1, h5 {
+#reports-placeholder :is(h1, h5) {
     margin: 0;
     font-weight: 700;
     text-align: center;

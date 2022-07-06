@@ -14,8 +14,7 @@ I prefer to have lean stacks and as few dependencies as possible
 - [Cypress](https://cypress.io) for testing
 
 To run the app, first install dependencies with `yarn`, and run `yarn dev` 
-to start the development server locally. Or start Cypress with `yarn cypress:ct`
-and explore the component tests.
+to start the development server locally. Or start Cypress and explore the component tests with with `yarn cypress:ct` or end-to-end tests with `yarn cypress:e2e`.
 
 On a side note, I took this as a personal challenge/opportunity to try Cypress'
 new component testing feature for the first time. I think that approach has 

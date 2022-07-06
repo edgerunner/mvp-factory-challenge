@@ -8,8 +8,8 @@ import {
 } from "/cypress/fixtures";
 
 describe("<Report>", {
-    viewportWidth: 800,
-    viewportHeight: 600,
+    viewportWidth: 1200,
+    viewportHeight: 800,
 }, function() {
     it("renders all projects and gateways", function() {
         cy.mount(
@@ -36,7 +36,7 @@ describe("<Report>", {
         cy.contains("th", "Gateway").should("exist");
         cy.contains("th", "Project").should("not.exist");
     });
-    it("renders single project", function() {
+    it.only("renders single project", function() {
         cy.mount(
             <Report report={reportProject2.data} 
                 projects={projects.data} 
@@ -57,6 +57,9 @@ describe("<Report>", {
         cy.log("column rendering");
         cy.contains("th", "Gateway").should("not.exist");
         cy.contains("th", "Project").should("not.exist");
+
+        cy.log("chart rendering");
+        cy.contains(".chart .legend", "Gateway");
     });
     it("renders single gateway", function() {
         cy.mount(

@@ -1,0 +1,19 @@
+ul.legend {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px 4px;
+    background-color: #F1FAFE;
+    border-radius: 10px;
+    margin: 0;
+}
+
+ul.legend li span:first-child {
+    width: 15px;
+    height: 15px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-right: 5px;
+}

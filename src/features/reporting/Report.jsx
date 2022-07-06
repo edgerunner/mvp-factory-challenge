@@ -1,12 +1,21 @@
 import { useMemo } from "react";
 import { DataSection, Date as Date_, Currency, Column, Summary } from "/src/components";
+import PercentagePieChart from "./PercentagePieChart";
 import "./Report.css";
 
 export default function Report(props) {
-    const { mode, data, names, renderHeader, total, totalTitle } = useTransform(props);
+    const {
+        mode,
+        data,
+        names,
+        renderHeader,
+        total,
+        totalTitle,
+        chart
+    } = useTransform(props);
 
     return (
-        <div id="report">
+        <div id="report" className={mode}>
             <DataSection 
                 data={data}
                 header={`${names.project} | ${names.gateway}`}
@@ -18,6 +27,7 @@ export default function Report(props) {
                     {row => <Currency amount={row.amount} code="USD"/>}
                 </Column>
             </DataSection>
+            { chart && <div className="chart"><PercentagePieChart data={chart}/></div> }
             <Summary>
                 {totalTitle} | <Currency amount={total} code="USD"/>
             </Summary>
@@ -28,10 +38,10 @@ export default function Report(props) {
 function useTransform({ report, projects, gateways }) {
     return useMemo(() => {
         projects = projects.reduce((map, project) =>
-            map.set(project.projectId, { ...project, blocks: [] }),
+            map.set(project.projectId, { ...project, total: 0, blocks: [] }),
         new Map());
         gateways = gateways.reduce((map, gateway) =>
-            map.set(gateway.gatewayId, { ...gateway, blocks: [] }),
+            map.set(gateway.gatewayId, { ...gateway, total: 0, blocks: [] }),
         new Map());
 
         let total = 0;
@@ -46,6 +56,8 @@ function useTransform({ report, projects, gateways }) {
             block.gateway.blocks.push(block);
 
             total += block.amount;
+            block.gateway.total += block.amount;
+            block.project.total += block.amount;
         }
 
         for (const project of projects.values())
@@ -92,7 +104,14 @@ function useTransform({ report, projects, gateways }) {
             single: "Total"
         }[mode];
 
-        return { mode, data, names, renderHeader, total, totalTitle };
+        const chart = {
+            all: null,
+            project: [...gateways.values()],
+            gateway: [...projects.values()],
+            single: null,
+        }[mode];
+
+        return { mode, data, names, renderHeader, total, totalTitle, chart };
 
     }, [report, projects, gateways]);
 }

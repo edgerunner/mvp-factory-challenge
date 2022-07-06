@@ -7,3 +7,26 @@
 #report :is(td, th):last-child {
     text-align: end;
 }
+
+@media (min-width: 1200px) {
+    #report:is(.project, .gateway) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr min-content;
+        grid-template-areas:
+            "table chart"
+            "table summary";
+    }
+    
+    #report:is(.project, .gateway) > section {
+        grid-area: table;
+    }
+    
+    #report:is(.project, .gateway) > div.chart {
+        grid-area: chart;
+    }
+
+    #report:is(.project, .gateway) > footer.Summary {
+        grid-area: summary;
+    }
+}

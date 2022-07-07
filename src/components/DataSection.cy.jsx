@@ -63,6 +63,24 @@ describe("<DataSection>", function() {
             cy.get("section article:first-child table").should("be.visible");
             cy.get("section article:last-child table").should("not.exist");
         });
-        it("toggles sections on click");
+        it("toggles blocks on click", function() {
+            cy.mount(
+                <DataSection data={sample} blockHeader={headerRenderProp}>
+                    <Column header="ID">{row => row.id}</Column>
+                    <Column header="Name">{row => row.name}</Column>
+                    <Column header="Age">{row => row.age}</Column>
+                </DataSection>
+            );
+            cy.get("section article:first-child table").should("be.visible");
+            cy.get("section article:last-child table").should("not.exist");
+            
+            cy.get("section article:last-child header").click();
+            cy.get("section article:first-child table").should("not.exist");
+            cy.get("section article:last-child table").should("be.visible");
+
+            cy.get("section article:first-child header").click();
+            cy.get("section article:first-child table").should("be.visible");
+            cy.get("section article:last-child table").should("not.exist");
+        });
     });
 });

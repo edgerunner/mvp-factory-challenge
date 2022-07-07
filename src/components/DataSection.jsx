@@ -3,7 +3,7 @@ import "./DataSection.css";
 import { useState } from "react";
 
 export default function DataSection({ children: columns, data, header, blockHeader }) {
-    const [openBlock] = useState(0);
+    const [openBlock, setOpenBlock] = useState(0);
     return (
         <section>
             {header && <header>{header}</header>}
@@ -11,6 +11,7 @@ export default function DataSection({ children: columns, data, header, blockHead
                 <DataBlock 
                     open={index === openBlock}
                     key={block.key || block.id || index}
+                    onToggle={() => setOpenBlock(index)}
                     data={block}
                     header={blockHeader?.(block)}>
                     {columns}

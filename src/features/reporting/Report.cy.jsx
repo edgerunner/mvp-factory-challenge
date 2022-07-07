@@ -21,7 +21,7 @@ describe("<Report>", {
         cy.contains("header", "Project 1").parent("article")
             .contains("tr", "2,493 USD").contains("07/29/2021");
         
-        cy.contains("header", "Project 2").parent("article")
+        cy.contains("header", "Project 2").click().parent("article")
             .contains("tr", "2,664 USD").contains("04/11/2021");
         
         cy.log("header rendering");
@@ -36,14 +36,14 @@ describe("<Report>", {
         cy.contains("th", "Gateway").should("exist");
         cy.contains("th", "Project").should("not.exist");
     });
-    it.only("renders single project", function() {
+    it("renders single project", function() {
         cy.mount(
             <Report report={reportProject2.data} 
                 projects={projects.data} 
                 gateways={gateways.data} />);
         
         cy.log("data rendering");
-        cy.contains("header", "Gateway 2").parent("article")
+        cy.contains("header", "Gateway 2").click().parent("article")
             .contains("tr", "147 USD").contains("05/29/2021");
         
         cy.log("header rendering");
@@ -68,7 +68,7 @@ describe("<Report>", {
                 gateways={gateways.data} />);
         
         cy.log("data rendering");
-        cy.contains("header", "Project 2").parent("article")
+        cy.contains("header", "Project 2").click().parent("article")
             .contains("tr", "2,664 USD").contains("04/11/2021");
         
         cy.log("header rendering");

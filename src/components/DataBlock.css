@@ -16,4 +16,9 @@ article > header {
     border-radius: 5px;
     padding: 16px;
     margin: -8px;
+    cursor: ns-resize;
+}
+
+article.open > header {
+    cursor: unset;
 }

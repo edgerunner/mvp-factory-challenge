@@ -41,4 +41,17 @@ describe("<DataBlock>", function() {
         cy.get("article table").should("not.exist");
         cy.get("article header h3").contains("Sample data");
     });
+
+    it("fires the onToggle event when its header is clicked", function() {
+        cy.mount(
+            <DataBlock data={sample} header={<h3>Sample data</h3>}
+                onToggle={cy.stub().as("onToggle")}>
+                <Column header="ID">{row => row.id}</Column>
+                <Column header="Name">{row => row.name}</Column>
+                <Column header="Age">{row => row.age}</Column>
+            </DataBlock>
+        );
+        cy.get("article header").click();
+        cy.get("@onToggle").should("be.called");
+    });
 });

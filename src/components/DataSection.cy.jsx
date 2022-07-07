@@ -15,6 +15,9 @@ const old = [
 
 const sample = [young, old];
 
+const headerRenderProp = data =>
+    data[0].age > 40 ? <h3>Senior</h3> : <h3>Junior</h3>;
+
 describe("<DataSection>", function() {
     it("generates <DataBlock>s from its data and <Table.Column>s", function() {
         cy.mount(
@@ -29,8 +32,6 @@ describe("<DataSection>", function() {
         cy.get("article table tr:nth-child(3) td:nth-child(3)").contains("22");
     });
     it("generates <DataBlock> headers with a render prop", function() {
-        const headerRenderProp = data =>
-            data[0].age > 40 ? <h3>Senior</h3> : <h3>Junior</h3>;
         cy.mount(
             <DataSection data={sample} blockHeader={headerRenderProp}>
                 <Column header="ID">{row => row.id}</Column>
@@ -51,7 +52,17 @@ describe("<DataSection>", function() {
         cy.get("section > header b").contains("Sample data");
     });
     describe("accordion behavior", function() {
-        it("initially shows the first block");
+        it("initially opens the first block", function() {
+            cy.mount(
+                <DataSection data={sample} blockHeader={headerRenderProp}>
+                    <Column header="ID">{row => row.id}</Column>
+                    <Column header="Name">{row => row.name}</Column>
+                    <Column header="Age">{row => row.age}</Column>
+                </DataSection>
+            );
+            cy.get("section article:first-child table").should("be.visible");
+            cy.get("section article:last-child table").should("not.exist");
+        });
         it("toggles sections on click");
     });
 });

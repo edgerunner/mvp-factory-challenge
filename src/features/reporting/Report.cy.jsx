@@ -107,4 +107,19 @@ describe("<Report>", {
 
         cy.contains("footer", "Total").contains("190,740 USD");
     });
+
+    it("sorts results by date ascending", function() {
+        cy.mount(
+            <Report report={report.data} 
+                projects={projects.data} 
+                gateways={gateways.data} />);
+
+        cy.get("table").first().within(function() {
+            cy.get("tr:first-of-type time, tr:last-of-type time")
+                .spread(function(first, last) {
+                    expect(new Date(first.attributes.datetime.value))
+                        .to.be.lessThan(new Date(last.attributes.datetime.value));
+                });
+        });
+    });
 });

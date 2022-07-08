@@ -44,6 +44,8 @@ function useTransform({ report, projects, gateways }) {
             map.set(gateway.gatewayId, { ...gateway, total: 0, blocks: [] }),
         new Map());
 
+        report.sort((a, b) => new Date(a.created) - new Date(b.created));
+
         let total = 0;
 
         for (const block of report) {

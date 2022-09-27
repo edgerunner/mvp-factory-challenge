@@ -1,14 +1,16 @@
 {
     "compilerOptions": {
-        "jsx": "react-jsx",
-        "baseUrl": "./",
+        "target": "es5",
+        "lib": [
+            "es5",
+            "dom"
+        ],
         "types": [
             "cypress",
             "node"
         ]
     },
     "include": [
-        "./src",
-        "./cypress.d.ts"
+        "**/*.ts"
     ]
 }

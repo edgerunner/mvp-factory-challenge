@@ -13,6 +13,8 @@
 // https://on.cypress.io/configuration
 // ***********************************************************
 
+/// <reference types="cypress" />
+
 // Import commands.js using ES2015 syntax:
 import "./commands";
 
@@ -20,6 +22,14 @@ import "./commands";
 // require('./commands')
 
 import { mount } from "cypress/react";
+
+declare global {
+  namespace Cypress {
+    interface Chainable<Subject> {
+      mount: typeof mount
+    }
+  }
+}
 
 Cypress.Commands.add("mount", mount);
 

@@ -3,7 +3,8 @@ import { mount } from 'cypress/react'
 declare global {
   namespace Cypress {
     interface Chainable<Subject> {
-      mount: typeof mount
+      mount: typeof mount,
+      css(): Cypress.Chainable<CSSStyleDeclaration>
     }
   }
 }

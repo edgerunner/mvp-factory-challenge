@@ -1,5 +1,8 @@
 import "./Summary.css";
-export default function Summary({ children }) {
+
+type Props = React.PropsWithChildren
+
+export default function Summary({ children }: Props): React.ReactElement {
     return (
         <footer className="Summary">
             {children}

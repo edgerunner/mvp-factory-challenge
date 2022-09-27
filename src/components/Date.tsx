@@ -1,3 +1,5 @@
+import type { ReactElement } from "react";
+
 const { format } = new Intl.DateTimeFormat("en-US", {
     month: "2-digit",
     day: "2-digit",
@@ -6,6 +8,6 @@ const { format } = new Intl.DateTimeFormat("en-US", {
 
 type Props = { date: Date }
 
-export default function Date({ date }: Props) {
+export default function Date({ date }: Props): ReactElement {
     return <time dateTime={date.toISOString()}>{format(date)}</time>;
 }

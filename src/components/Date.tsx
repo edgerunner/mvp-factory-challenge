@@ -4,6 +4,8 @@ const { format } = new Intl.DateTimeFormat("en-US", {
     year: "numeric" 
 });
 
-export default function Date({ date }) {
+type Props = { date: Date }
+
+export default function Date({ date }: Props) {
     return <time dateTime={date.toISOString()}>{format(date)}</time>;
 }

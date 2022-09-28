@@ -1,4 +1,4 @@
-import { Column } from "./Table";
+import { Column as TableColumn } from "./Table";
 import DataBlock from "./DataBlock";
 
 const sample = [
@@ -6,6 +6,8 @@ const sample = [
     { id: 2, name: "Jane", age: 21 },
     { id: 3, name: "Joe", age: 22 },
 ];
+
+const Column = TableColumn<typeof sample[number]>
 
 describe("<DataBlock>", function() {
     it("wraps and passes its <Column>s to a <Table>", function() {

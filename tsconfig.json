@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "jsx": "react-jsx",
+        "baseUrl": "./",
+        "types": [
+            "cypress",
+            "node"
+        ],
+        "target": "ES2015",
+        "moduleResolution": "node"
+    },
+    "include": [
+        "./src",
+        "./cypress.d.ts"
+    ]
+}

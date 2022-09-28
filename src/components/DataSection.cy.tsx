@@ -1,5 +1,5 @@
 import DataSection from "./DataSection";
-import { Column } from "./Table";
+import { Column as TableColumn } from "./Table";
 import "./DataSection.css";
 
 const young = [
@@ -14,6 +14,8 @@ const old = [
 ];
 
 const sample = [young, old];
+
+const Column = TableColumn<typeof sample[0][number]>
 
 const headerRenderProp = data =>
     data[0].age > 40 ? <h3>Senior</h3> : <h3>Junior</h3>;

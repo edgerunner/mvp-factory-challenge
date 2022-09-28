@@ -3,7 +3,13 @@ import { useState, Children, cloneElement } from "react";
 import cn from "classnames";
 import "./Menu.css";
 
-export default function Menu({ title, children, onSelect }) {
+type Props = {
+    title: string
+    onSelect?(id: string): void
+    children: React.ReactElement<ItemProps, typeof Item>[]
+}
+
+export default function Menu({ title, children, onSelect }: Props): React.ReactElement {
     const [open, setOpen] = useState(false);
     const childrenWithHandlers = Children.map(children, child => 
         cloneElement(child, {
@@ -25,7 +31,15 @@ export default function Menu({ title, children, onSelect }) {
     );
 }
 
-export function Item({ children, onSelect }) {
+type ItemProps = React.PropsWithChildren<{ 
+        onSelect(): void
+        id?: string
+    } | {
+        onSelect?(): void
+        id: string
+    }>
+
+export function Item({ children, onSelect }: ItemProps): React.ReactElement {
     return <li onClick={onSelect}>{children}</li>;
 }
 

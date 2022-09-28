@@ -4,8 +4,8 @@ describe("<Menu>", function() {
     it("shows only the button when not open", function() {
         cy.mount(
             <Menu title="Closed">
-                <Menu.Item>Item 1</Menu.Item>
-                <Menu.Item>Item 2</Menu.Item>
+                <Menu.Item id="item-1">Item 1</Menu.Item>
+                <Menu.Item id="item-2">Item 2</Menu.Item>
             </Menu>
         );
         cy.get("button").contains("Closed");
@@ -14,8 +14,8 @@ describe("<Menu>", function() {
     it("shows the <Menu.Item>s when open", function() {
         cy.mount(
             <Menu title="Open">
-                <Menu.Item>Item 1</Menu.Item>
-                <Menu.Item>Item 2</Menu.Item>
+                <Menu.Item id="item-1">Item 1</Menu.Item>
+                <Menu.Item id="item-2">Item 2</Menu.Item>
             </Menu>
         );
         cy.get("button").click();
@@ -37,8 +37,8 @@ describe("<Menu>", function() {
     it("closes when selected", function() {
         cy.mount(
             <Menu title="Select">
-                <Menu.Item>Item 1</Menu.Item>
-                <Menu.Item>Item 2</Menu.Item>
+                <Menu.Item id="item-1">Item 1</Menu.Item>
+                <Menu.Item id="item-2">Item 2</Menu.Item>
             </Menu>
         );
         cy.get("button").click();
@@ -49,8 +49,8 @@ describe("<Menu>", function() {
     it("keeps its size when opened", function() {
         cy.mount(
             <Menu title="Select">
-                <Menu.Item>Item 1</Menu.Item>
-                <Menu.Item>Item 2</Menu.Item>
+                <Menu.Item id="item-1">Item 1</Menu.Item>
+                <Menu.Item id="item-2">Item 2</Menu.Item>
             </Menu>
         );
         cy.get("button.Menu").then(([closedMenu]) => {
@@ -70,8 +70,8 @@ describe("<Menu>", function() {
         it("renders its contents", function() {
             cy.mount(
                 <Menu title="Select">
-                    <Menu.Item>Item <b>1</b></Menu.Item>
-                    <Menu.Item>Item <i>2</i></Menu.Item>
+                    <Menu.Item id="item-1">Item <b>1</b></Menu.Item>
+                    <Menu.Item id="item-2">Item <i>2</i></Menu.Item>
                 </Menu>
             );
             cy.get("button").click();

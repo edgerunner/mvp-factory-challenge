@@ -37,7 +37,10 @@ interface Context {
 }
 
 type Events =
-  | { type: "userSubmittedReportRequest", filters: any }
+  | { 
+      type: "userSubmittedReportRequest",
+      filters: { projectId?: string, gatewayId?: string } 
+    }
   | { type: "userClickedRerty" } 
   | RequestDoneEvent
   

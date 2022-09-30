@@ -51,8 +51,6 @@ function useTransform({ report, projects, gateways }) {
         for (const block of report) {
             block.project = projects.get(block.projectId);
             block.gateway = gateways.get(block.gatewayId);
-            block.created = new Date(block.created);
-            block.modified = new Date(block.modified);
 
             block.project.blocks.push(block);
             block.gateway.blocks.push(block);

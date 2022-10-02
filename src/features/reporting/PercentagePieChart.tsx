@@ -1,16 +1,17 @@
 import { ResponsiveContainer, PieChart, Pie, Cell, LabelList, Legend } from "recharts";
+import type { LegendProps } from "recharts/types"
 import "./PercentagePieChart.css";
 
 const { format } = new Intl.NumberFormat("en-US", { style: "percent" });
 
-export default function PercentagePieChart({ data }) {
+export default function PercentagePieChart({ data }: { data: { name: string, total: number}[]}) {
     const total = data.reduce((sum, entity) => sum + entity.total, 0);
     return (
         <ResponsiveContainer width="100%" height={500}>
-            <PieChart width={400} height={400} fill="#6497B1">
+            <PieChart width={400} height={400}>
                 <Legend 
                     verticalAlign="top" 
-                    content={CustomLegend}
+                    content={CustomLegend as React.ComponentProps<typeof Legend>["content"]}
                 />
                 <Pie
                     data={data}
@@ -24,7 +25,7 @@ export default function PercentagePieChart({ data }) {
                         fill="white"
                         stroke="none"
                         dataKey="total"
-                        formatter={amount => format(amount / total)}
+                        formatter={(amount: number) => format(amount / total)}
                     />
                     <Cell fill="#A259FF" />
                     <Cell fill="#F24E1E" />
@@ -35,7 +36,9 @@ export default function PercentagePieChart({ data }) {
     );
 }
 
-function CustomLegend({ payload: entities }) {
+
+function CustomLegend({ payload: entities }: LegendProps) {
+    if (!entities) return
     return (
         <ul className="legend">
             {entities.map(({ value, color: backgroundColor }) => 

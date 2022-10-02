@@ -1,6 +1,7 @@
+import * as React from "react";
 import "./ReportsHeader.css";
 
-export default function ReportsHeader({ children }) {
+export default function ReportsHeader({ children }: React.PropsWithChildren) {
     return (
         <header id="reports-header">
             <hgroup>

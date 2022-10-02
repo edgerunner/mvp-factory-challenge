@@ -5,7 +5,7 @@ import "./Menu.css";
 
 type Props = {
     title: string
-    onSelect?(id: string): void
+    onSelect?(id?: string): void
     children: React.ReactElement<ItemProps, typeof Item>[]
 }
 

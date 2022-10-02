@@ -1,39 +1,14 @@
 import { createMachine, assign } from "xstate";
+import schema, { Project, Gateway, Payment } from "./Reports.schema"
+
 /* eslint indent: [error, 2] */
 
 const API = "http://178.63.13.157:8090/mock-api/api";
 
 interface Context {
-  projects: {
-    projectId: string,
-    userIds: string[],
-    rule: string,
-    gatewayIds: string[],
-    structure: string,
-    industry: string,
-    website: string,
-    description: string,
-    image: string,
-    name: string
-  }[],
-  gateways: {
-    gatewayId: string,
-    userIds: string[],
-    name: string,
-    type: string,
-    apiKey: string,
-    secondaryApiKey: string,
-    description: string
-  }[],
-  report: null | {
-    paymentId: string,
-    amount: number,
-    projectId: string,
-    gatewayId: string,
-    userIds: string[],
-    modified: string,
-    created: string
-  }[]
+  projects: Project[],
+  gateways: Gateway[],
+  report: null | Payment[]
 }
 
 type Events =
@@ -46,7 +21,7 @@ type Events =
   
 type RequestDoneEvent<Key extends keyof Context = keyof Context> = { 
   type: `done.invoke.${Key}Request`, 
-  data: { data: Context[Key] } 
+  data: Context[Key] 
 }
   
 export default 
@@ -154,9 +129,15 @@ createMachine({
   },
 }, {
   services: {
-    projectsRequest: (): Promise<Context["projects"]> => fetch(API + "/projects").then(res => res.json()),
-    gatewaysRequest: (): Promise<Context["gateways"]> => fetch(API + "/gateways").then(res => res.json()),
-    reportRequest: (context, event): Promise<Context["report"]> =>
+    projectsRequest: (): Promise<Context["projects"]> => 
+      fetch(API + "/projects")
+        .then(res => res.json())
+        .then(schema.projects.parse),
+    gatewaysRequest: (): Promise<Context["gateways"]> => 
+      fetch(API + "/gateways")
+        .then(res => res.json())
+        .then(schema.gateways.parse),
+    reportRequest: (_, event): Promise<Context["report"]> =>
       event.type === "userSubmittedReportRequest" 
         ? fetch(API + "/report", {
           method: "POST",
@@ -166,22 +147,32 @@ createMachine({
           },
           body: JSON.stringify(event.filters),
         }).then(res => res.json())
+          .then(json => schema.report.parse(json))
         : Promise.reject(),
   },
   actions: {
-    putProjectsIntoContext: putEntityInContext("projects"),
-    putGatewaysIntoContext: putEntityInContext("gateways"),
-    putReportIntoContext: putEntityInContext("report"),
+    putProjectsIntoContext: assign({ 
+      projects: (context, event) => 
+        event.type === "done.invoke.projectsRequest" 
+        && event.data as Project[]
+        || context.projects
+    }),
+    putGatewaysIntoContext: assign({ 
+      gateways: (context, event) => 
+        event.type === "done.invoke.gatewaysRequest" 
+        && event.data as Gateway[]
+        || context.gateways
+    }),
+    putReportIntoContext: assign({ 
+      report: (context, event) => 
+        event.type === "done.invoke.reportRequest" 
+        && event.data as Payment[]
+        || context.report
+    }),
   },
   guards: {
     emptyReport: (_, event) => 
       event.type === "done.invoke.reportRequest"
-        && event.data.data.length === 0,
+        && event.data?.length === 0,
   }
 });
-
-function putEntityInContext(entity: keyof Context) {
-  return assign({
-    [entity]: (_, event) => event.data.data
-  });
-}

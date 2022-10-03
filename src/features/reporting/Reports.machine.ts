@@ -8,7 +8,7 @@ const API = "http://178.63.13.157:8090/mock-api/api";
 interface Context {
   projects: Project[],
   gateways: Gateway[],
-  report: null | Payment[]
+  report: Payment[]
 }
 
 type Events =
@@ -23,11 +23,11 @@ type RequestDoneEvent<Key extends keyof Context = keyof Context> = {
   type: `done.invoke.${Key}Request`, 
   data: Context[Key] 
 }
-  
+
 export default 
-/** @xstate-layout N4IgpgJg5mDOIC5QCUwAcD2AnALrAdADIYCGEAlgHZQAEYlO5jc+AClhgFZgDGeRpCtQDEEDJTD4qANwwBrSaky4CxMlVr1GzAuy69+aoVAQyMPEo3EBtAAwBdRKEywm5cU5AAPRAGYALLb4AKwAjABMwf4RAJwxobb+SQA0IACeiOEAbKH4-gDswQAcRcExvqG+MWH5AL61qUrYhoIadAxuLHrcfKqtImBYHFj4aAA2lgBm2AC2+E0qAurU7drkXRw9LcsmZhZWlHaOSCAubh4nPggAtOExWfi2WTH+RVlZVUXZRakZCKGlR7+YK+WzlHLhO6VeqNdDNPo7VadAgAcUsYAA7iQ0gjjKJxJIzAp8FB0VicagAI4AVzgOE8ZwOniuvnyQReWVsvl8wXyoX5-nCv0Q-hiQSStny4VF91C1XCMJAC22xiROnwaJwmOxuI0wkGw1GExw0ywc1JWvJsCptNg9JOjPclGZiGuoKC4SKopyXtKMXCtmCwoQUX8+DiOSyd2BAcSiuVupWWmR+Ik+Dt6PmcMWRjayZ0DIwriZl0Q+SK+XwWTZwWCWWCAficuDAWC4bKOT5EVCxSy-nj2f4AFEOjoaGNBJAs8ocDQ0PQ8WI00TFIOCCO1nBx5OINPmnOFxpTJRZPsnUdC8WnS6EC8ivhIaKClVOaEUuk-F8QiCkkUIvko3yOoGiVNd8A3ZFtzISBhGpWBBgAZWpAAjGYmC1CBlRtOlL3OZ1S1vXx72lflimBMV8iqYNQj5PIAjeEFAyeCoBxnAgAEFKDVNIaEmEhyDGSAaBwDAoIgWD4KwABhMZyB4BRMMGHA-mcIs8Jva5fzyCt7gAgEe0qfxqNse85QiL0xRiGs63qEDKAwCA4E8BMllVfN1l0TYDETKBcJLUArlue8iOrXx62iUU7khYNIgeQDAnuAo3hiUpWPhVy81HDy2C83pXMgPzrwIjt8CKHl-ByCJ6wbH4PwQT1ck7etIlsAMvmCNKc36TQso2fRekKi4AtdBt8BCyjwrff1-Wor0qyqBJeXiUo+SyTqVUyzdUTJHUMuoQb8OGm5wkrZ5FpOgMpWiSjgwqh4km5UJqyexIinWny1WyzVtRxfKIAOm8SrK2tWv8blW18YNgi5PI7lButygR969p6raNR2nEAYI64wireJAwuyUSPyFsXjyEGckDWJfAVECXNzJNevgB01P87xXQAsa3gmqIpqi6iIiraGilsOUeS9X9kYgscJ2g3cADlRKwNcsaO7twlK6tniauHar+JJKwbAoKOlHkailpmxKnZUD0oYxVfZ28KofJ4+zBlKeW5GKiPwUiUtsLl6z-QMLa2q3dxt2AAAsMAxQ7TlZoq1ble9pv9Tk+S5AIoZ9yLpT-Yp4k9UPINlxz-pZq8hsd+IwxInsvTKSUqLqis8gq4paySasXmRzjuN4-jBIgYTRLLh3AuBXxStZGm7neQIwSyFsqnbXl3ijOs7l8d6J9dApKzKyjIXuPsA-uai22BMrA3LQVqmrDrbKAA */
-createMachine({
-  context: { projects: [], gateways: [], report: null },
+/** @xstate-layout N4IgpgJg5mDOIC5QCUwAcD2AnALrAdADIYCGEAlgHZQAEYlO5jc+AClhgFZgDGeRpCtQDEEDJTD4qANwwBrSWg7c+sVAEcArnByJQmWE3Li9IAB6IAzADYAjPhsBOAAwAWRwHZbH1wA5rlgA0IACeiABM1r741uGOlh6WAKy+4Za2UQC+mcGomLgExGRUtPSMzATsXLz8RUJQwmBYHFj4aAA2JDgAZtgAtm3KNWpgWjqmBkYmSOaIALRx1vjO1o6urkmWW86WrkGhEbau+EeOAeFHtlseHuHZuejYtYIldAxGLADiXWAA7iQhQovERiCRSSiyBT4KA-f6AjTaWC6GaTRjTUAWBAJZz4NbWHbJLy2I7hYJhBDuHHrZy3dxnWyOJJ3HIgPJPIHFahvcrkL6wgEc+qNZrYNqdHr9aH8+GjRHI-QYQxoyimTFzSzOHHhXzuOw63xJRzhZxJMmIJLrXH02JrJma1z3VmPAoCTmld4VUTiSRIn74NkuuqvMofeAoxVTFUzTEeXweGIeE1Jax2xzExxmrEbXGGuxEi4pawOlkB-gAUQ9vNgNHagkg-udOBoaHoQtBkhk8kkWEbCPG4aVxijGMQa0cJy2R18tl8-kcaczCSS+DScQu1js2ssjtLBArPLgNbrEGEmlgTQAypoAEZ9Jg4SClvtIiYR5Wq0eWaLhVzElIbFxEgzA4EG8ew9j8FMNSSFZ0h3RsCAAQUobkmBCGhuhIch2kgGgcAwI8yFPc8sAAYXacgeAUCBUFwckFUHdFZgQOZ1miPwPDODw9VsJIrlcTNbGcaIGVsbVKU8JNrGyFlKAwCA4FMXdXXqVCKjYIZVBUkpX0Y4dmIWaIv2sRIU1-dw11JEDwmTGJwh8ZwzlcWNVgNeD8meN01KrDTqi0upIF0yMPwQXN8F8ZJXDsMSUyZXxM21ew8xTGznGNVIknc9ltK5EN1KqFQ8CC99o3mJkHH8UyLVONdBJ1GJLDTE1OJnJJbiywNgXdA8CG+B84UFHSB2C0qWPsmImqZW4aR-bx9nJKKlnWScTIyNxfA6zzVLyny+r+AUVMC4aSpHUKznC5IYJ-LZdk2TMYMsfBXDiNKNlWZJVk2wbcsrPl+oFYqhxCuY+ImoSpuNWlvEXNYnqSGC7BNMT4mZB4PO+7rQ0Bpi1W4iqTJsaqLKNQSxJiGDfGcBlkh1DZbC+-B91DQiFIgfAADkCJ7dHsf0zExLJyrVmSl74pA9Z4yZZzAOu+HvAZpmKhZ+tS2bVshoYkbTrxFcViLPZHAizZ5oiL8Tl4w3NUJ6cTQV37q1rMgVcbGhYAACwwX59NRIHRvTaIjXnSIaSErYBJAzZ2KNH9pxSNNtTtnrlYgXmQrTY5Zt4nVDRpRrMzjJ6opSeH1hMtYGeQtT0Mw7DcPwlnU9G1jNguxJwkWItNTORdGpzNqN1iZM4m3EsEMb07WJuVvLHbs5O8c6xBOXDYIuanU4mTDxMpkoA */
+createMachine<Context, Events>({
+  context: { projects: [], gateways: [], report: [] },
   schema: { context: {} as Context, events: {} as Events },
   id: "Reports",
   initial: "Loading entities",
@@ -173,6 +173,6 @@ createMachine({
   guards: {
     emptyReport: (_, event) => 
       event.type === "done.invoke.reportRequest"
-        && event.data?.length === 0,
+        && event.data.length === 0,
   }
 });

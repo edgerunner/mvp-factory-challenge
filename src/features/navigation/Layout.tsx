@@ -1,6 +1,7 @@
 import "./Layout.css";
 import AppHeader from "./AppHeader";
-export default function Layout({ children }) {
+
+export default function Layout({ children }: React.PropsWithChildren) {
     return (
         <div id="app">
             <AppHeader />

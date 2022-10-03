@@ -1,5 +1,5 @@
 import "./AppHeader.css";
-import { Avatar } from "/src/components";
+import { Avatar } from "src/components";
 
 export default function AppHeader() {
     return (

@@ -87,9 +87,9 @@ describe("<Reports>", {
         cy.get("#report").should("exist");
     });
 
-    it("renders placeholder for empty reports", function() {
+    it.only("renders placeholder for empty reports", function() {
         cy.wait(["@projects", "@gateways"]);
-        cy.intercept("POST", "**/report", { code: 200, data: [], error: null }).as("report");
+        cy.intercept("POST", "**/report", { code: "200", data: [], error: null }).as("report");
         cy.get("#report-toolbar button.action").contains("report").click();
         cy.wait("@report");
         cy.get("#reports-placeholder").should("exist");

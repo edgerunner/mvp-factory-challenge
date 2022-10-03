@@ -1,6 +1,7 @@
 import DataSection from "./DataSection";
 import { Column as TableColumn } from "./Table";
 import "./DataSection.css";
+import { ArrayKeys } from "zod";
 
 const young = [
     { id: 1, name: "John", age: 20 },
@@ -15,9 +16,9 @@ const old = [
 
 const sample = [young, old];
 
-const Column = TableColumn<typeof sample[0][number]>
+const Column = TableColumn<typeof sample[number][number]>
 
-const headerRenderProp = data =>
+const headerRenderProp = (data: typeof sample[number]) =>
     data[0].age > 40 ? <h3>Senior</h3> : <h3>Junior</h3>;
 
 describe("<DataSection>", function() {

@@ -1,21 +1,21 @@
 import Report from "./Report";
-import { 
-    report,
-    reportProject2,
-    reportGateway1,
-    reportProject1Gateway2,
-    projects, gateways 
-} from "/cypress/fixtures";
+
+import schema from "./Reports.schema";
 
 describe("<Report>", {
     viewportWidth: 1200,
     viewportHeight: 800,
 }, function() {
+    this.beforeEach(function () {
+        cy.fixture("projects").then(schema.projects.parse).as("projects");
+        cy.fixture("gateways").then(schema.gateways.parse).as("gateways");
+        cy.fixture("report").then(schema.report.parse).as("report");   
+    });
     it("renders all projects and gateways", function() {
         cy.mount(
-            <Report report={report.data} 
-                projects={projects.data} 
-                gateways={gateways.data} />);
+            <Report report={this.report} 
+                projects={this.projects} 
+                gateways={this.gateways} />);
         
         cy.log("data rendering");
         cy.contains("header", "Project 1").parent("article")
@@ -37,11 +37,13 @@ describe("<Report>", {
         cy.contains("th", "Project").should("not.exist");
     });
     it("renders single project", function() {
-        cy.mount(
-            <Report report={reportProject2.data} 
-                projects={projects.data} 
-                gateways={gateways.data} />);
-        
+        cy.fixture("report-project2").then(res => {
+            cy.mount(
+                <Report report={schema.report.parse(res)}
+                    projects={this.projects} 
+                    gateways={this.gateways} />);    
+        });
+
         cy.log("data rendering");
         cy.contains("header", "Gateway 2").click().parent("article")
             .contains("tr", "147 USD").contains("05/29/2021");
@@ -62,10 +64,13 @@ describe("<Report>", {
         cy.contains(".chart .legend", "Gateway");
     });
     it("renders single gateway", function() {
-        cy.mount(
-            <Report report={reportGateway1.data} 
-                projects={projects.data} 
-                gateways={gateways.data} />);
+        cy.fixture("report-gateway1").then(res => {
+            cy.mount(
+                <Report report={schema.report.parse(res)}
+                    projects={this.projects} 
+                    gateways={this.gateways} />);
+            
+        });
         
         cy.log("data rendering");
         cy.contains("header", "Project 2").click().parent("article")
@@ -80,10 +85,12 @@ describe("<Report>", {
         cy.contains("th", "Project").should("not.exist");
     });
     it("renders single project and gateway", function() {
-        cy.mount(
-            <Report report={reportProject1Gateway2.data} 
-                projects={projects.data} 
-                gateways={gateways.data} />);
+        cy.fixture("report-project1-gateway2").then(res => {
+            cy.mount(
+                <Report report={schema.report.parse(res)}
+                    projects={this.projects} 
+                    gateways={this.gateways} />);
+        });
         
         cy.log("data rendering");
         cy.get("article")
@@ -100,19 +107,21 @@ describe("<Report>", {
     });
 
     it("shows the total amount", function() {
+        cy.fixture("report").then(schema.report.parse).as("report");
         cy.mount(
-            <Report report={report.data} 
-                projects={projects.data} 
-                gateways={gateways.data} />);
+            <Report report={this.report} 
+                projects={this.projects} 
+                gateways={this.gateways} />);
 
         cy.contains("footer", "Total").contains("190,740 USD");
     });
 
     it("sorts results by date ascending", function() {
+        cy.fixture("report").then(schema.report.parse).as("report");
         cy.mount(
-            <Report report={report.data} 
-                projects={projects.data} 
-                gateways={gateways.data} />);
+            <Report report={this.report} 
+                projects={this.projects} 
+                gateways={this.gateways} />);
 
         cy.get("table").first().within(function() {
             cy.get("tr:first-of-type time, tr:last-of-type time")

@@ -9,6 +9,7 @@ I prefer to have lean stacks and as few dependencies as possible
 - [React](https://reactjs.org) for FRP rendering
 - [XState](https://xstate.js.org) for state and effect management
 - [Recharts](https://recharts.org) for data visualization
+- [Zod](https://zod.dev) for parsing API data
 - [Vite](https://vitejs.dev) as the bundler
 - [Yarn](https://yarnpkg.com) as the package manager
 - [Cypress](https://cypress.io) for testing

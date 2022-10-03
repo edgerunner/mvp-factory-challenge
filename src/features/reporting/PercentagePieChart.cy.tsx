@@ -1,4 +1,4 @@
-import PercentagePieChart from "./PercentagePieChart.jsx";
+import PercentagePieChart from "./PercentagePieChart.js";
 
 const sample = [
     { name: "Project 1", total: 3750 },

@@ -22,3 +22,9 @@ new component testing feature for the first time. I think that approach has
 potential. Let me know what you think.
 
 [Mert](mailto:mert@merttorun.com) ([@edgerunner](https://github.com/edgerunner))
+
+## Major changes
+
+- *2022-10-04 —* Converted all JavaScript into 
+[TypeScript](https://typescriptlang.org), as it is a major asking point now.
+Also see [the code before TypeScript conversion](https://github.com/edgerunner/mvp-factory-challenge/tree/e76cb72a342f6528396bac956487ecb0ec3b641f)

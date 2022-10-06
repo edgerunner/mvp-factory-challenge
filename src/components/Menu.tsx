@@ -1,5 +1,5 @@
 import Button from "./Button";
-import { useState, Children, cloneElement } from "react";
+import { useState, Children, cloneElement, useEffect } from "react";
 import cn from "classnames";
 import "./Menu.css";
 
@@ -11,6 +11,19 @@ type Props = {
 
 export default function Menu({ title, children, onSelect }: Props): React.ReactElement {
     const [open, setOpen] = useState(false);
+
+    useEffect(function registerClickOutsideListener() {
+        const closer = () => setOpen(false);
+        if (open) {
+            document.body.addEventListener("click", closer, { once: true })
+            return function removeListener() {
+                document.body.removeEventListener("click", closer)
+            }
+        } else {
+            document.body.removeEventListener("click", closer)
+        }
+    }, [open]);
+
     const childrenWithHandlers = Children.map(children, child => 
         cloneElement(child, {
             onSelect() { 

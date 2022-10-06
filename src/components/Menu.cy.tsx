@@ -46,6 +46,18 @@ describe("<Menu>", function() {
         cy.get("button").should("exist");
         cy.get("menu li").should("not.exist");
     });
+    it("closes when someone clicks elsewhere", function() {
+        cy.mount(
+            <Menu title="Select">
+                <Menu.Item id="item-1">Item 1</Menu.Item>
+                <Menu.Item id="item-2">Item 2</Menu.Item>
+            </Menu>
+        );
+        cy.get("button").click();
+        cy.get("body").click("bottomLeft");
+        cy.get("button").should("exist");
+        cy.get("menu li").should("not.exist");
+    });
     it("keeps its size when opened", function() {
         cy.mount(
             <Menu title="Select">

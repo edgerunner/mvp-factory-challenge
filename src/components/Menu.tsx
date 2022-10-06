@@ -11,18 +11,7 @@ type Props = {
 
 export default function Menu({ title, children, onSelect }: Props): React.ReactElement {
     const [open, setOpen] = useState(false);
-
-    useEffect(function registerClickOutsideListener() {
-        const closer = () => setOpen(false);
-        if (open) {
-            document.body.addEventListener("click", closer, { once: true })
-            return function removeListener() {
-                document.body.removeEventListener("click", closer)
-            }
-        } else {
-            document.body.removeEventListener("click", closer)
-        }
-    }, [open]);
+    useClickOutside(open, () => setOpen(false));
 
     const childrenWithHandlers = Children.map(children, child => 
         cloneElement(child, {
@@ -57,3 +46,16 @@ export function Item({ children, onSelect }: ItemProps): React.ReactElement {
 }
 
 Menu.Item = Item;
+
+function useClickOutside(open: boolean, closer: () => void): void {
+    useEffect(function registerClickOutsideListener() {
+        if (open) {
+            document.body.addEventListener("click", closer, { once: true })
+            return function removeListener() {
+                document.body.removeEventListener("click", closer)
+            }
+        } else {
+            document.body.removeEventListener("click", closer)
+        }
+    }, [open]);
+}

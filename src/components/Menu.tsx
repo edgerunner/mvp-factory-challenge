@@ -1,7 +1,8 @@
 import Button from "./Button";
-import { useState, Children, cloneElement, useEffect } from "react";
+import { useState, Children, cloneElement } from "react";
 import cn from "classnames";
 import "./Menu.css";
+import { useClickOutside } from "src/hooks";
 
 type Props = {
     title: string
@@ -47,15 +48,3 @@ export function Item({ children, onSelect }: ItemProps): React.ReactElement {
 
 Menu.Item = Item;
 
-function useClickOutside(open: boolean, closer: () => void): void {
-    useEffect(function registerClickOutsideListener() {
-        if (open) {
-            document.body.addEventListener("click", closer, { once: true })
-            return function removeListener() {
-                document.body.removeEventListener("click", closer)
-            }
-        } else {
-            document.body.removeEventListener("click", closer)
-        }
-    }, [open]);
-}
